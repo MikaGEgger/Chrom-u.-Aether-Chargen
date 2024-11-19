@@ -2,9 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using chargen.Character;
 using chargen.Character.Career;
 using chargen.Character.CharacterProperties;
 using Microsoft.VisualBasic.FileIO;
+
+using System.Reflection.Metadata.Ecma335;
 
 namespace chargen.RulesetConstants
 {
@@ -28,16 +31,26 @@ namespace chargen.RulesetConstants
             get { return careers; }
         }
 
+        private List<Metatype> metaTypes;
+        public List<Metatype> MetaTypes
+        {
+            get { return metaTypes; }
+            set { metaTypes = value; }
+        }
+        
+
         public RulesetConstants()
         {
             characterAttributes = new List<CharacterAttribute>();
             chracterSkills = new List<CharacterSkill>();
             careers = new List<Career>();
+            metaTypes = new List<Metatype>();
+
 
             FillCharacterAttributes();
             FillCharacterSkills();
             FillCharacterCareers();
-            
+            FillMetaTypes();
         }
 
         private void FillCharacterAttributes()
@@ -61,7 +74,7 @@ namespace chargen.RulesetConstants
                 attribute.AttributeCode = fields[0].Split('(')[1].Split(')')[0];
                 attribute.Description = fields[1];
                 this.CharacterAttributes.Add(attribute);
-                Console.WriteLine(attribute.ToString());
+                //Console.WriteLine(attribute.ToString());
             }
         }
         
@@ -85,7 +98,7 @@ namespace chargen.RulesetConstants
                 skill.SkillName = fields[0];
                 skill.Description = fields[1];
                 this.CharacterSkills.Add(skill);
-                Console.WriteLine(skill.ToString());
+               // Console.WriteLine(skill.ToString());
             }
         }
 
@@ -112,7 +125,7 @@ namespace chargen.RulesetConstants
                 career.MaximumFinancialPotential= Convert.ToInt16(fields[4]);
                 career.SampleOccupations= fields[5].Split(',').ToList();
                 this.Careers.Add(career);
-                Console.WriteLine(career.ToString());
+                //Console.WriteLine(career.ToString());
             }
         }
         private List<CharacterSkill> CreateSkillList(string skills)
@@ -124,6 +137,50 @@ namespace chargen.RulesetConstants
                 skillList.Add(this.CharacterSkills.FirstOrDefault(x => x.SkillName == skill.Trim()));
             }
             return skillList;
+        }
+
+        private void FillMetaTypes()
+        {
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Metatypes.csv";
+        
+              TextFieldParser parser = new TextFieldParser(loc);
+            
+            parser.TextFieldType = FieldType.Delimited;
+            parser.SetDelimiters(";");
+            while (!parser.EndOfData)
+            {
+                string[] fields = parser.ReadFields();
+                Metatype metatype =  new Metatype();
+                if(fields.Length !=4)
+                {
+                    continue;
+                }
+                List<string> rollRange = fields[0].Split('-').ToList();
+                metatype.RollRange = new Tuple<int,int>(Convert.ToInt16(rollRange[0]), Convert.ToInt16(rollRange[1]));
+                metatype.Name = fields[1];
+                metatype.AttributeModifiers = ParseMetatypeAttributes(fields[2]);
+                metatype.RaceSpecialities= fields[3].Split(',').ToList();
+                this.metaTypes.Add(metatype);
+                //Console.WriteLine(metatype.ToString());
+            }
+        }
+
+        private List<Tuple<int, CharacterAttribute>> ParseMetatypeAttributes(string attributeModifiers)
+        {
+            if(String.IsNullOrEmpty(attributeModifiers))
+            {
+                return new List<Tuple<int, CharacterAttribute>>();
+            }
+            var itemsTuples= attributeModifiers.Split(',');
+            var characterAttributes= new List<Tuple<int,CharacterAttribute>>();
+            foreach(var tuple in itemsTuples)
+            {
+                var values=tuple.Trim().Split(' ');
+                int modifier = Convert.ToInt16(values[0].Trim('%'));
+                CharacterAttribute  characterAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == values[1]);
+                characterAttributes.Add(new Tuple<int,CharacterAttribute>(modifier, characterAttribute));
+            }
+            return characterAttributes;
         }
     }
 }
