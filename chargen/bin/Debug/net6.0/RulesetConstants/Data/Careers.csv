@@ -1,0 +1,9 @@
+﻿Konzerndrohne;GES;Bürokratie, Elektronik, Maschinenbau, Medizin, Menschenkenntnis, Überreden, Wahrnehmung, ;2d5%;35;Portier, IT Support, Büromitarbeiter etc.
+Krimineller;STR;Waffenfertigkeit (Melee, Hieb, Pistole oder Standard), Elektronik, Einschüchterung, Heimlichkeit, Menschenkenntnis, Überreden, Vorführung;2d5%;65;Eintreiber, Schmuggler, Dieb
+Entertainer;CHA;Akrobatik, Wissen / Fremdsprache, Bürokratie, Heimlichkeit, Vorführung, Menschenkenntnis;2d5%;70;Barkeeper, Tänzer, Spieler
+Gesetzeshüter;WID;Athletik, Waffenfertigkeit (Melee, Pistole oder Standard), Bodenfahrzeuge, Einschüchterung, Medizin, Menschenkenntnis, Wahrnehmung;2d5%;50;Drogenfahnder, Ermittler, Journaldienst
+Händler;CRD;Wissen / Fremdsprache, Menschenkenntnis, Überreden, Wahrnehmung;2d10%;99;Broker, Streetfood-Verkäufer, Hehler
+Hilfskraft;bel.;Athletik, Bodenfahrzeuge, Elektronik, Maschinenbau, Medizin, Menschenkenntnis, Überreden, Wahrnehmung;1d5%;25;Hausmeister, Pflegepersonal, Shop-Assistant, Wartungsangestellter
+Militär;WIK;Athletik, Akrobatik, Waffenfertigkeit (Melee, Hieb, Automatik, Standard, Pistole oder Schwer), Bodenfahrzeuge, Feldkunde, Medizin, Luftfahrzeuge, Wahrnehmung;3d5%;70;Kopfgeldjäger, Söldner, staatliches Heer
+Techniker;TEC;Boden-, Luft-, Wasserfahrzeuge Elektronik, Maschinenbau, Medizin, Feldkunde, Überreden, Wahrnehmung, Wissen / Fremdsprache;2d10%;60;Fahrzeugmechaniker, Kybernetiker, Robotiker, Wissenschaftler, Pilot
+Wissenschaftler;INT;Feldkunde, Maschinenbau, Medizin, Wahrnehmung;3d5%;70;Arzt, Kartograph, Kundschafter

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using chargen.Character.CharacterProperties;
 
 namespace chargen.Character
 {
@@ -10,8 +7,8 @@ namespace chargen.Character
         public string Name { get; set; }
         public string Description { get; set;}
 
-        public List<Attribute> AttributeBoni { get; set; }
-        public List<Attribute> AttributeMali { get; set; }
+        public List<CharacterAttribute> AttributeBoni { get; set; }
+        public List<CharacterAttribute> AttributeMali { get; set; }
 
     }
 }

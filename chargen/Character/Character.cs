@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace chargen.Character
 {
@@ -10,11 +6,13 @@ namespace chargen.Character
     {
         public Character() 
         {
-            this. Metatype= new Metatype();         
+            this. Metatype= new Metatype();   
+            this.Origin = new CharacterOrigin();      
    
         }
         #region health
-        public int LebenspunkteMax { get; set; }
+       
+                public int LebenspunkteMax { get; set; }
         public int LebenpunkteCurrent { get; set; }
 
         public int ErschöpfungspunkteMax { get; set; }

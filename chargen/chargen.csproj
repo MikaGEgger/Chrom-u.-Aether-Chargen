@@ -6,5 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+   <Content Include="RulesetConstants\\Data\\*">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+   </Content>
+</ItemGroup> 
 
 </Project>
