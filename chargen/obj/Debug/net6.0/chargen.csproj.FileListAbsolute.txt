@@ -1,0 +1,15 @@
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\chargen.exe
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\chargen.deps.json
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\chargen.runtimeconfig.json
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\chargen.dll
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\chargen.pdb
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.csproj.AssemblyReference.cache
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.AssemblyInfoInputs.cache
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.AssemblyInfo.cs
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.csproj.CoreCompileInputs.cache
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.dll
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\refint\chargen.dll
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.pdb
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.genruntimeconfig.cache
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\ref\chargen.dll
