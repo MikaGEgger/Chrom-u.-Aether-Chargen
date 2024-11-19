@@ -16,3 +16,4 @@ C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Attributes.csv
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Careers.csv
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\CharacterSkills.csv
+c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\.~lock.Careers.csv#

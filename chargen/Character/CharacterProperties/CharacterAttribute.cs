@@ -2,6 +2,14 @@ namespace chargen.Character.CharacterProperties
 {
     public class CharacterAttribute
     {
+        private String attributeCode;
+        public String AttributeCode
+        {
+            get { return attributeCode; }
+            set { attributeCode = value; }
+        }
+        
+
         private string attributeName= "";
         public string AttributeName
         {

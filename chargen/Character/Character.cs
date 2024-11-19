@@ -29,7 +29,7 @@ namespace chargen.Character
 
         public CharacterOrigin Origin { get; set; }
 
-        
+        public string Name { get; set; }
 
     }
 }
