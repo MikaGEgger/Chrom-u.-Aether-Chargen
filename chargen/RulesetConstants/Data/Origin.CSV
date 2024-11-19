@@ -1,0 +1,4 @@
+01 - 25;Wildnis / Badlands;STR,WIK;CHA;1 d5 +2;16+1d5; JEntertainer, Forscher, Gesetzeshüter, Händler, Krimineller, Militär, Techniker
+26 - 55;Arbeiterkind;TEC, WID;WIK;1 d5 +1;18+1d10 J;Alle
+56 - 85;Sprawlwurf;GES, CHA;WID;1 d5 +0;15+1d10 J;Entertainer, Krimineller, Händler, Militär, Techniker
+86 - 100;Konzernnachwuchs;INT, CRD;STR;1 d5 -1;21+1d10 J;Alle außer Krimineller, (außerdem +8% FIN ab Start)

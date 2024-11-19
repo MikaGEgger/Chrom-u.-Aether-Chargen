@@ -10,9 +10,16 @@ namespace chargen.Character
             this.Origin = new CharacterOrigin();      
    
         }
+
+        public Character(string? characterName, Metatype metatype, CharacterOrigin origin)
+        {
+            Name = characterName;
+            Metatype = metatype;
+            Origin = origin;
+        }
         #region health
-       
-                public int LebenspunkteMax { get; set; }
+
+        public int LebenspunkteMax { get; set; }
         public int LebenpunkteCurrent { get; set; }
 
         public int ErschöpfungspunkteMax { get; set; }
@@ -30,6 +37,11 @@ namespace chargen.Character
         public CharacterOrigin Origin { get; set; }
 
         public string Name { get; set; }
+      
 
+        public override string ToString()
+        {
+            return "Name: "+Name+" Metatype: "+Metatype.ToString();
+        }
     }
 }

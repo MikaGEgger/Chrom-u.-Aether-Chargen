@@ -18,3 +18,4 @@ c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\CharacterSkills.csv
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Metatypes.csv
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\TitleCard.txt
+c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Origin.CSV

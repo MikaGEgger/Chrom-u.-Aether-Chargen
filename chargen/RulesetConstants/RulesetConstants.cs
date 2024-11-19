@@ -37,6 +37,13 @@ namespace chargen.RulesetConstants
             get { return metaTypes; }
             set { metaTypes = value; }
         }
+
+private List<CharacterOrigin> characterOrigins;
+public List<CharacterOrigin> CharacterOrigins
+{
+    get { return characterOrigins; }
+    set { characterOrigins = value; }
+}
         
 
         public RulesetConstants()
@@ -45,12 +52,14 @@ namespace chargen.RulesetConstants
             chracterSkills = new List<CharacterSkill>();
             careers = new List<Career>();
             metaTypes = new List<Metatype>();
+            characterOrigins = new List<CharacterOrigin>();
 
 
             FillCharacterAttributes();
             FillCharacterSkills();
             FillCharacterCareers();
             FillMetaTypes();
+            FillCharacterOrigins();
         }
 
         private void FillCharacterAttributes()
@@ -162,6 +171,49 @@ namespace chargen.RulesetConstants
                 metatype.RaceSpecialities= fields[3].Split(',').ToList();
                 this.metaTypes.Add(metatype);
                 //Console.WriteLine(metatype.ToString());
+            }
+        }
+
+         private void FillCharacterOrigins()
+        {
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Origin.csv";
+        
+              TextFieldParser parser = new TextFieldParser(loc);
+            
+            parser.TextFieldType = FieldType.Delimited;
+            parser.SetDelimiters(";");
+            while (!parser.EndOfData)
+            {
+                string[] fields = parser.ReadFields();
+                CharacterOrigin origin =  new CharacterOrigin();
+                if(fields.Length !=7)
+                {
+                    continue;
+                }
+                List<string> rollRange = fields[0].Split('-').ToList();
+                origin.RollRange = new Tuple<int,int>(Convert.ToInt16(rollRange[0]), Convert.ToInt16(rollRange[1]));
+                origin.Name = fields[1];
+                origin.AttributeBoni=new List<CharacterAttribute>();
+                var bonusValues=fields[2].Trim().Split(',');
+                foreach(var bonusValue in bonusValues)
+                {
+                    origin.AttributeBoni.Add(this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == bonusValue.Trim()));
+                }
+                origin.AttributeMali=new List<CharacterAttribute>();
+                var malusValues=fields[3].Trim().Split(',');
+                foreach(var malusValue in malusValues)
+                {
+                    origin.AttributeMali.Add(this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == malusValue.Trim()));
+                }
+                var fateValues = fields[4].Trim().Split(' ');
+                origin.FatePointDice= new Tuple<int,int>(Convert.ToInt16(fateValues[0]),Convert.ToInt16(fateValues[1].Trim('d')));
+                origin.FatePointBonus=Convert.ToInt16(fateValues[2]);
+                var jobValues=fields[5].Split('+');
+                origin.BaseJobAge= Convert.ToInt16(jobValues[0]);
+                var jobDice = jobValues[1].Split('d');
+                origin.JobDice=new Tuple<int,int>(Convert.ToInt16(jobDice[0]),Convert.ToInt16(jobDice[1].Trim('J').Trim()));
+                origin.SampleJobs= fields[6];
+                characterOrigins.Add(origin);
             }
         }
 
