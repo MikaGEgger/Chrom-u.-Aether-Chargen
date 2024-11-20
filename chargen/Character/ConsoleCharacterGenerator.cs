@@ -1,6 +1,7 @@
 using chargen.Character.CharacterProperties;
 using Baksteen.Extensions.DeepCopy;
 
+
 namespace chargen.Character
 {
     public static class ConsoleCharacterGenerator
@@ -18,8 +19,10 @@ namespace chargen.Character
             charac.Attributes = SetAttributeValues(charac.Attributes,charac.Metatype.AttributeModifiers);
             charac.CreateComputedElements();
             return charac;
-        }
-
+        }  
+        
+          
+    
         private static List<CharacterAttribute> SetAttributeValues(List<CharacterAttribute> attributes, List<AttributeModifier>metatypeModifiers)
         {
              Console.WriteLine("Set Character Attribues: 1 - Diceroll, 2 - Pointbuy[NOT IMPLEMENTED], 0 - Random");
@@ -65,10 +68,14 @@ namespace chargen.Character
                     value+=Random.Shared.Next(1,11);
                 }
                 value+=20;
+                if(metatypeModifiers!=null)
+                {
                 AttributeModifier modifier = metatypeModifiers.FirstOrDefault(x=>x.Attribute.Equals(attribute));
+                
                 if(modifier != null)
                 {
                     value+=modifier.Modifier;
+                }
                 }
                 attribute.Value = value;
 

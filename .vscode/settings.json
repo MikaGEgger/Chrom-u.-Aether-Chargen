@@ -1,3 +1,4 @@
 {
-    "dotnet.defaultSolution": "chargen.sln"
+    "dotnet.defaultSolution": "chargen.sln",
+    "java.dependency.syncWithFolderExplorer": false
 }

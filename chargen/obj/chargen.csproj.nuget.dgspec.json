@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {}
+    "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {
+    "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
+        "projectUniqueName": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
         "projectName": "chargen",
-        "projectPath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
+        "projectPath": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
         "packagesPath": "C:\\Users\\mikag\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\obj\\",
+        "outputPath": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mikag\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,27 +34,61 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "itext": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "itext.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.321\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

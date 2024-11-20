@@ -1,100 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Character xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <LebenspunkteMax>16</LebenspunkteMax>
-  <LebenpunkteCurrent>16</LebenpunkteCurrent>
-  <ErschöpfungspunkteMax>16</ErschöpfungspunkteMax>
-  <ErschöpfungspunkteCurrent>16</ErschöpfungspunkteCurrent>
+  <LebenspunkteMax>17</LebenspunkteMax>
+  <LebenpunkteCurrent>17</LebenpunkteCurrent>
+  <ErschöpfungspunkteMax>19</ErschöpfungspunkteMax>
+  <ErschöpfungspunkteCurrent>19</ErschöpfungspunkteCurrent>
   <Movement>7</Movement>
   <Essence>100</Essence>
   <Mana>0</Mana>
   <Metatype>
-    <Name>Mensch</Name>
+    <Name>Zwerg</Name>
     <RaceSpecialities>
-      <string>+1 Schickalspunkt</string>
-      <string>+1 Fertigkeit nach Wahl+1 Tier 1 Talent nach Wahl</string>
-      <string>-1 FP-Kosten für Talente bei Steigerungen</string>
+      <string>+20% Lebensstilkosten</string>
+      <string>-1 BEW</string>
+      <string>IR-Sicht: +1 BW auf Wahrnehmung (Sicht) im Dunklen</string>
+      <string>keine SW durch Dunkelheit</string>
+      <string> Nebel etc</string>
+      <string>+1 BW auf WID gg. Toxine &amp; Krankheiten</string>
     </RaceSpecialities>
   </Metatype>
   <Prominence>0</Prominence>
   <Finances>0</Finances>
   <Origin>
-    <Name>Wildnis / Badlands</Name>
-    <AttributeBoni>
-      <CharacterAttribute>
-        <AttributeCode>STR</AttributeCode>
-        <AttributeName>Stärke</AttributeName>
-        <Value>39</Value>
-      </CharacterAttribute>
-      <CharacterAttribute>
-        <AttributeCode>WIK</AttributeCode>
-        <AttributeName>Willenskraft</AttributeName>
-        <Value>38</Value>
-      </CharacterAttribute>
-    </AttributeBoni>
-    <AttributeMali>
-      <CharacterAttribute>
-        <AttributeCode>CHA</AttributeCode>
-        <AttributeName>Charisma</AttributeName>
-        <Value>39</Value>
-      </CharacterAttribute>
-    </AttributeMali>
+    <Name>Sprawlwurf</Name>
+    <FatePointBonus>5</FatePointBonus>
   </Origin>
   <Name>0</Name>
   <Attributes>
     <CharacterAttribute>
       <AttributeCode>BF</AttributeCode>
       <AttributeName>Ballistische Fähigkeit</AttributeName>
-      <Value>47</Value>
+      <Value>40</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>KG</AttributeCode>
       <AttributeName>Kampfgeschick</AttributeName>
-      <Value>43</Value>
+      <Value>40</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>STR</AttributeCode>
       <AttributeName>Stärke</AttributeName>
-      <Value>39</Value>
+      <Value>40</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>WID</AttributeCode>
       <AttributeName>Widerstand</AttributeName>
-      <Value>44</Value>
+      <Value>47</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>GES</AttributeCode>
       <AttributeName>Geschicklichkeit</AttributeName>
-      <Value>37</Value>
+      <Value>33</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>INT</AttributeCode>
       <AttributeName>Intelligenz</AttributeName>
-      <Value>40</Value>
+      <Value>32</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>TEC</AttributeCode>
       <AttributeName>Technologie</AttributeName>
-      <Value>26</Value>
+      <Value>43</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>WIK</AttributeCode>
       <AttributeName>Willenskraft</AttributeName>
-      <Value>38</Value>
+      <Value>48</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>CHA</AttributeCode>
       <AttributeName>Charisma</AttributeName>
-      <Value>39</Value>
+      <Value>41</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>CRD</AttributeCode>
       <AttributeName>Credibility</AttributeName>
-      <Value>35</Value>
+      <Value>44</Value>
     </CharacterAttribute>
     <CharacterAttribute>
       <AttributeCode>ÄTH</AttributeCode>
       <AttributeName>Äther</AttributeName>
-      <Value>25</Value>
+      <Value>33</Value>
     </CharacterAttribute>
   </Attributes>
 </Character>

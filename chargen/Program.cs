@@ -12,9 +12,11 @@ internal class Program
         RulesetConstants constants = new RulesetConstants();
         Character character = ConsoleCharacterGenerator.CreateCharacter(constants);
         CharacterXMLParser.ExportCharacter(character);
+        CharacterPDFParser.ExportCharacter(character);
         Console.WriteLine("Created Character: " + character.ToString());
 
-    }
+      }
+  
 
    
 

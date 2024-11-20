@@ -1,8 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
 using System.Xml.Serialization;
+using chargen.Character.CharacterProperties;
+using iText.Layout.Properties;
 
 namespace chargen.Character
 {
@@ -22,6 +24,10 @@ namespace chargen.Character
         if (writer != null)
             writer.Close();
     }
+        
+            
+           
         }
+
     }
 }
