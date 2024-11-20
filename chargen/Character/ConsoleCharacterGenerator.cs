@@ -1,4 +1,5 @@
 using chargen.Character.CharacterProperties;
+using Baksteen.Extensions.DeepCopy;
 
 namespace chargen.Character
 {
@@ -12,14 +13,14 @@ namespace chargen.Character
             Console.WriteLine("Enter Character Name:");
             charac.Name=Console.ReadLine();
             charac.Metatype= SetMetaType(constants.MetaTypes);
-            charac.Origin=SetCharacterOrigin(constants.CharacterOrigins);
-            charac.Attributes = new List<CharacterProperties.CharacterAttribute>(constants.CharacterAttributes.ConvertAll(x => x));
-            charac.Attributes = SetAttributeValues(charac.Attributes);
-
+            charac.Origin= SetCharacterOrigin(constants.CharacterOrigins);
+            charac.Attributes = DeepCopyObjectExtensions.DeepCopy(constants.CharacterAttributes.ConvertAll(x => x));
+            charac.Attributes = SetAttributeValues(charac.Attributes,charac.Metatype.AttributeModifiers);
+            charac.CreateComputedElements();
             return charac;
         }
 
-        private static List<CharacterAttribute> SetAttributeValues(List<CharacterAttribute> attributes)
+        private static List<CharacterAttribute> SetAttributeValues(List<CharacterAttribute> attributes, List<AttributeModifier>metatypeModifiers)
         {
              Console.WriteLine("Set Character Attribues: 1 - Diceroll, 2 - Pointbuy[NOT IMPLEMENTED], 0 - Random");
            
@@ -33,10 +34,10 @@ namespace chargen.Character
             switch (attributeselectionMode)
             {
                 case 0:
-                RollCharacterAttributes(attributes, false);
+                RollCharacterAttributes(attributes, false,metatypeModifiers);
                 break;
                 case 1:
-                RollCharacterAttributes(attributes, true);
+                RollCharacterAttributes(attributes, true,metatypeModifiers);
                 break;
                 case 2:
                 //PointBuy
@@ -45,11 +46,12 @@ namespace chargen.Character
             return attributes;
         }
 
-        private static void RollCharacterAttributes(List<CharacterAttribute> attributes, bool manualMode)
+        private static void RollCharacterAttributes(List<CharacterAttribute> attributes, bool manualMode, List<AttributeModifier> metatypeModifiers)
         {
             Console.WriteLine($"Roll character attributes: {attributes.Count}");
             foreach (CharacterAttribute attribute in attributes)
             {
+             
                 if(manualMode)
                 {
                     Console.WriteLine("Press Enter to Roll for Attribute " + attribute.AttributeName);
@@ -63,6 +65,11 @@ namespace chargen.Character
                     value+=Random.Shared.Next(1,11);
                 }
                 value+=20;
+                AttributeModifier modifier = metatypeModifiers.FirstOrDefault(x=>x.Attribute.Equals(attribute));
+                if(modifier != null)
+                {
+                    value+=modifier.Modifier;
+                }
                 attribute.Value = value;
 
                 if(manualMode)
@@ -97,7 +104,8 @@ namespace chargen.Character
             {
                 originValue = characterOrigins[originInput - 1].DiceRangeMin + 1;
             }
-            CharacterOrigin characterOrigin = characterOrigins.FirstOrDefault(x => x.DiceRangeMin <= originValue && x.DiceRangeMax >= originValue);
+            CharacterOrigin characterOrigin = DeepCopyObjectExtensions.DeepCopy(characterOrigins.FirstOrDefault(x => x.DiceRangeMin <= originValue && x.DiceRangeMax >= originValue));
+            characterOrigin.FatePointBonus= characterOrigin.FatePointsDiceNumber*(Random.Shared.Next(1, characterOrigin.FatePointsDiceType+1))+characterOrigin.FatePointsDiceBonus;
             return characterOrigin;
         }
 
@@ -120,11 +128,11 @@ namespace chargen.Character
             if (metatypeInput == 0)
             {
                 int metatypeValue = Random.Shared.Next(1, 100);
-              metatype = metatypes.FirstOrDefault(x=>x.DiceRangeMin<=metatypeValue&&x.DiceRangeMax>=metatypeValue);
+              metatype = DeepCopyObjectExtensions.DeepCopy(metatypes.FirstOrDefault(x=>x.DiceRangeMin<=metatypeValue&&x.DiceRangeMax>=metatypeValue));
             }
             else
             {
-                metatype = metatypes[metatypeInput - 1];
+                metatype = DeepCopyObjectExtensions.DeepCopy(metatypes[metatypeInput - 1]);
             }
             
             

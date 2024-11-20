@@ -34,5 +34,10 @@ namespace chargen.Character.CharacterProperties
             return  attributeName + " - " + Description;
         }    
 
+        public bool Equals(CharacterAttribute other)
+        {
+            return other.AttributeCode == AttributeCode;
+        }
+
     }
 }

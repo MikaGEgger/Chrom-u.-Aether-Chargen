@@ -9,6 +9,7 @@ namespace chargen.Character
     }
     public string Name { get; set; }
 
+  [XmlIgnore]
     public List<AttributeModifier> AttributeModifiers { get; set; }
 
     public List<String> RaceSpecialities { get; set; }

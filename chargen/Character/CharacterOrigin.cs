@@ -10,10 +10,13 @@ namespace chargen.Character
         }
         public string Name { get; set; }
 
+        [XmlIgnore]
         public List<CharacterAttribute> AttributeBoni { get; set; }
-        public List<CharacterAttribute> AttributeMali { get; set; }
 
         [XmlIgnore]
+        public List<CharacterAttribute> AttributeMali { get; set; }
+
+       
         public int FatePointBonus { get; set; }
 
         [XmlIgnore]
