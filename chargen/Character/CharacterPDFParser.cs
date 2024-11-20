@@ -12,7 +12,7 @@ namespace chargen.Character
 {
     public class CharacterPDFParser
     {
-         static void ExportCharacter(Character character)
+        public static void ExportCharacter(Character character)
         {
              string outputPdfPath = character.Name+".pdf";
 
