@@ -9,11 +9,13 @@ namespace chargen.Character
 
      public List<Tuple<int, CharacterAttribute>> AttributeModifiers { get; set; }
 
-    public Tuple<int, int> RollRange { get; set; }
-
-    public List<String> RaceSpecialities { get; set; }
     
-    public override string ToString()
+    public List<String> RaceSpecialities { get; set; }
+        public int DiceRangeMin { get; internal set; }
+
+          public int DiceRangeMax { get; internal set; }
+
+        public override string ToString()
     {
       return Name;
     }

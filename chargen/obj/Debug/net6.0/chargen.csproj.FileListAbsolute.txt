@@ -19,3 +19,8 @@ c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Metatypes.csv
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\TitleCard.txt
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Origin.CSV
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Attributes.xml
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Careers.xml
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\CharacterSkills.xml
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Metatypes.xml
+C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Origin.XML

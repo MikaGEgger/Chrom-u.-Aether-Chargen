@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Carreers>
+  <Carreer>
+    <Beruf>Konzerndrohne</Beruf>
+    <Attr.>GES</Attr.>
+    <Fertigkeiten>Bürokratie, Elektronik, Maschinenbau, Medizin, Menschenkenntnis, Überreden, Wahrnehmung</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>2</DiceCount>
+      <DiceType>5</DiceType>
+    </FINperTerm>
+    <maxFIN>35</maxFIN>
+    <Funktion>Portier, IT Support, Büromitarbeiter etc.</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Krimineller</Beruf>
+    <Attr.>STR</Attr.>
+    <Fertigkeiten>Waffenfertigkeit (Melee, Hieb, Pistole oder Standard), Elektronik, Einschüchterung, Heimlichkeit, Menschenkenntnis, Überreden, Vorführung</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>2</DiceCount>
+      <DiceType>5</DiceType>
+    </FINperTerm>
+    <maxFIN>65</maxFIN>
+    <Funktion>Eintreiber, Schmuggler, Dieb</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Entertainer</Beruf>
+    <Attr.>CHA</Attr.>
+    <Fertigkeiten>Akrobatik, Wissen / Fremdsprache, Bürokratie, Heimlichkeit, Vorführung, Menschenkenntnis</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>2</DiceCount>
+      <DiceType>5</DiceType>
+    </FINperTerm>
+    <maxFIN>70</maxFIN>
+    <Funktion>Barkeeper, Tänzer, Spieler</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Gesetzeshüter</Beruf>
+    <Attr.>WID</Attr.>
+    <Fertigkeiten>Athletik, Waffenfertigkeit (Melee, Pistole oder Standard), Bodenfahrzeuge, Einschüchterung, Medizin, Menschenkenntnis, Wahrnehmung</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>2</DiceCount>
+      <DiceType>5</DiceType>
+    </FINperTerm>
+    <maxFIN>50</maxFIN>
+    <Funktion>Drogenfahnder, Ermittler, Journaldienst</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Händler</Beruf>
+    <Attr.>CRD</Attr.>
+    <Fertigkeiten>Wissen / Fremdsprache, Menschenkenntnis, Überreden, Wahrnehmung</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>2</DiceCount>
+      <DiceType>10</DiceType>
+    </FINperTerm>
+    <maxFIN>99</maxFIN>
+    <Funktion>Broker, Streetfood-Verkäufer, Hehler</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Hilfskraft</Beruf>
+    <Attr.>bel.</Attr.>
+    <Fertigkeiten>Athletik, Bodenfahrzeuge, Elektronik, Maschinenbau, Medizin, Menschenkenntnis, Überreden, Wahrnehmung</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>1</DiceCount>
+      <DiceType>5</DiceType>
+    </FINperTerm>
+    <maxFIN>25</maxFIN>
+    <Funktion>Hausmeister, Pflegepersonal, Shop-Assistant, Wartungsangestellter</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Militär</Beruf>
+    <Attr.>WIK</Attr.>
+    <Fertigkeiten>Athletik, Akrobatik, Waffenfertigkeit (Melee, Hieb, Automatik, Standard, Pistole oder Schwer), Bodenfahrzeuge, Feldkunde, Medizin, Luftfahrzeuge, Wahrnehmung</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>3</DiceCount>
+      <DiceType>5</DiceType>
+    </FINperTerm>
+    <maxFIN>70</maxFIN>
+    <Funktion>Kopfgeldjäger, Söldner, staatliches Heer</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Techniker</Beruf>
+    <Attr.>TEC</Attr.>
+    <Fertigkeiten>Boden-, Luft-, Wasserfahrzeuge Elektronik, Maschinenbau, Medizin, Feldkunde, Überreden, Wahrnehmung, Wissen / Fremdsprache</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>2</DiceCount>
+      <DiceType>10</DiceType>
+    </FINperTerm>
+    <maxFIN>60</maxFIN>
+    <Funktion>Fahrzeugmechaniker, Kybernetiker, Robotiker, Wissenschaftler, Pilot</Funktion>
+  </Carreer>
+  <Carreer>
+    <Beruf>Wissenschaftler</Beruf>
+    <Attr.>INT</Attr.>
+    <Fertigkeiten>Feldkunde, Maschinenbau, Medizin, Wahrnehmung</Fertigkeiten>
+    <FINperTerm>
+      <DiceCount>3</DiceCount>
+      <DiceType>5</DiceType>
+    </FINperTerm>
+    <maxFIN>70</maxFIN>
+    <Funktion>Arzt, Kartograph, Kundschafter</Funktion>
+  </Carreer>
+</Carreers>

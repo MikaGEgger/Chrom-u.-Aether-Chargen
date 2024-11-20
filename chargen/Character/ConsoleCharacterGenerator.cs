@@ -41,9 +41,9 @@ namespace chargen.Character
             }
             else
             {
-                originValue = characterOrigins[originInput - 1].RollRange.Item1 + 1;
+                originValue = characterOrigins[originInput - 1].DiceRangeMin + 1;
             }
-            CharacterOrigin characterOrigin = characterOrigins.FirstOrDefault(x => x.RollRange.Item1 <= originValue && x.RollRange.Item2 >= originValue);
+            CharacterOrigin characterOrigin = characterOrigins.FirstOrDefault(x => x.DiceRangeMin <= originValue && x.DiceRangeMax >= originValue);
             return characterOrigin;
         }
 
@@ -69,9 +69,9 @@ namespace chargen.Character
             }
             else
             {
-                metatypeValue = metatypes[metatypeInput - 1].RollRange.Item1 + 1;
+                metatypeValue = metatypes[metatypeInput - 1].DiceRangeMin + 1;
             }
-            Metatype metatype = metatypes.FirstOrDefault(x => x.RollRange.Item1 <= metatypeValue && x.RollRange.Item2 >= metatypeValue);
+            Metatype metatype = metatypes.FirstOrDefault(x => x.DiceRangeMin <= metatypeValue && x.DiceRangeMax >= metatypeValue);
             return metatype;
         }
     }

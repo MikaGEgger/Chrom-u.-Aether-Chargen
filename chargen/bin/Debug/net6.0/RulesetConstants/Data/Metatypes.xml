@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Metatypes>
+  <Metatype>
+    <DiceRange>
+      <Min>01</Min>
+      <Max>55</Max>
+    </DiceRange>
+    <Name>Mensch</Name>
+    <SkillAdjustments></SkillAdjustments>
+    <Modifiers>+1 Schickalspunkt,+1 Fertigkeit nach Wahl+1 Tier 1 Talent nach Wahl,-1 FP-Kosten für Talente bei Steigerungen</Modifiers>
+  </Metatype>
+  <Metatype>
+    <DiceRange>
+      <Min>56</Min>
+      <Max>75</Max>
+    </DiceRange>
+    <Name>Ork</Name>
+    <SkillAdjustments>+4% STR, +6% WID, -2% TEC, -2% CHA</SkillAdjustments>
+    <Modifiers>Restlicht: keine SW bei Dämmerung</Modifiers>
+  </Metatype>
+  <Metatype>
+    <DiceRange>
+      <Min>76</Min>
+      <Max>85</Max>
+    </DiceRange>
+    <Name>Elf</Name>
+    <SkillAdjustments>+2% GES, +4% CHA</SkillAdjustments>
+    <Modifiers>Restlicht: keine SW bei Dämmerung</Modifiers>
+  </Metatype>
+  <Metatype>
+    <DiceRange>
+      <Min>86</Min>
+      <Max>95</Max>
+    </DiceRange>
+    <Name>Zwerg</Name>
+    <SkillAdjustments>+4% WID +4% STR, +2% WIK, -2% GES</SkillAdjustments>
+    <Modifiers>+20% Lebensstilkosten,-1 BEW,IR-Sicht: +1 BW auf Wahrnehmung (Sicht) im Dunklen,keine SW durch Dunkelheit, Nebel etc,+1 BW auf WID gg. Toxine &amp; Krankheiten</Modifiers>
+  </Metatype>
+  <Metatype>
+    <DiceRange>
+      <Min>96</Min>
+      <Max>100</Max>
+    </DiceRange>
+    <Name>Troll</Name>
+    <SkillAdjustments>+8% STR, +8% WID, -6% CHA, -2% TEC, -8% CRD</SkillAdjustments>
+    <Modifiers>+100% Lebensstilkosten,+1 BEW,IR-Sicht: +1 BW  auf Wahrnehmung (Sicht) im Dunklen,keine SW durch Dunkelheit Nebel etc,+1 WIDB gegen Schaden</Modifiers>
+  </Metatype>
+</Metatypes>

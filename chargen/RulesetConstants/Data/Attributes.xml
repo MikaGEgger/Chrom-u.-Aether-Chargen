@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Attributes>
+  <Attribute>
+    <AttributeName>Ballistische Fähigkeit</AttributeName>
+    <AttributeCode>BF</AttributeCode>
+    <AttributeDescription>Umgang mit Fernkampfwaffen</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Kampfgeschick</AttributeName>
+    <AttributeCode>KG</AttributeCode>
+    <AttributeDescription>Fähigkeit im Nahkampf, bewaffnet und waffenlos</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Stärke</AttributeName>
+    <AttributeCode>STR</AttributeCode>
+    <AttributeDescription>Körperkraft und Muskeln eines Charakters</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Widerstand</AttributeName>
+    <AttributeCode>WID</AttributeCode>
+    <AttributeDescription>hält fest, wie zäh ausdauernd und gesund man ist, bzw. wie gut man Treffer einsteckt</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Geschicklichkeit</AttributeName>
+    <AttributeCode>GES</AttributeCode>
+    <AttributeDescription>Fingerfertigkeit, Initiative und Reflexe eines Charakters.</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Intelligenz</AttributeName>
+    <AttributeCode>INT</AttributeCode>
+    <AttributeDescription>Sinnesschärfe, Bildung und das Auffassungsvermögen eines Charakters</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Technologie</AttributeName>
+    <AttributeCode>TEC</AttributeCode>
+    <AttributeDescription>Affinität des Charakters im Umgang mit Technik, Elektronik etc.</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Willenskraft</AttributeName>
+    <AttributeCode>WIK</AttributeCode>
+    <AttributeDescription>Mut, psychische Resistenz sowie Widerstand gegen manche magischen Effekte</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Charisma</AttributeName>
+    <AttributeCode>CHA</AttributeCode>
+    <AttributeDescription>Verbale Schlagfertigkeit, Ausstrahlung und Attraktivität eines Charakters</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Credibility</AttributeName>
+    <AttributeCode>CRD</AttributeCode>
+    <AttributeDescription>Reputation des Charakters. Sie kann nicht nur durch die normale Charakterentwicklung, sondern auch durch das Verhalten des Charakters verändert werden.(s. Ruf und Soziales</AttributeDescription>
+  </Attribute>
+  <Attribute>
+    <AttributeName>Äther</AttributeName>
+    <AttributeCode>ÄTH</AttributeCode>
+    <AttributeDescription>symbolisiert die Verbindung des Charakters mit übernatürlichen Kräften, wie gut er sie wahrnehmen und potentiell kontrollieren kann. Mundane Charaktere können dieses Attribut ignorieren. Dieses Attribut wird rechnerisch auch über die Essenz verändert. Wenn die Essenz abnimmt, reduziert sich aliquot auch das Ätherattribut.</AttributeDescription>
+  </Attribute>
+</Attributes>

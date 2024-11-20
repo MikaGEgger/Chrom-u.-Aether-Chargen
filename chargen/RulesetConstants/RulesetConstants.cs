@@ -8,6 +8,7 @@ using chargen.Character.CharacterProperties;
 using Microsoft.VisualBasic.FileIO;
 
 using System.Reflection.Metadata.Ecma335;
+using System.Xml;
 
 namespace chargen.RulesetConstants
 {
@@ -19,10 +20,10 @@ namespace chargen.RulesetConstants
             get { return characterAttributes; }
         }
 
-        private List<CharacterSkill> chracterSkills;
+        private List<CharacterSkill> characterSkills;
         public List<CharacterSkill> CharacterSkills
         {
-            get { return chracterSkills; }
+            get { return characterSkills; }
         }
 
         private List<Career> careers;
@@ -49,7 +50,7 @@ public List<CharacterOrigin> CharacterOrigins
         public RulesetConstants()
         {
             characterAttributes = new List<CharacterAttribute>();
-            chracterSkills = new List<CharacterSkill>();
+            characterSkills = new List<CharacterSkill>();
             careers = new List<Career>();
             metaTypes = new List<Metatype>();
             characterOrigins = new List<CharacterOrigin>();
@@ -65,76 +66,154 @@ public List<CharacterOrigin> CharacterOrigins
         private void FillCharacterAttributes()
         {
 
-            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Attributes.csv";
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Attributes.xml";
         
-           TextFieldParser parser = new TextFieldParser(loc);
-            
-            parser.TextFieldType = FieldType.Delimited;
-            parser.SetDelimiters(";");
-            while (!parser.EndOfData)
+          
+            using (XmlReader reader = XmlReader.Create(loc))
+        {
+            CharacterAttribute currentAttribute = null;
+
+            while (reader.Read())
             {
-                string[] fields = parser.ReadFields();
-                CharacterAttribute attribute = new CharacterAttribute();
-                if(fields.Length !=2)
+                if (reader.IsStartElement())
                 {
-                    continue;
+                    switch (reader.Name)
+                    {
+                        case "Attribute":
+                            currentAttribute = new CharacterAttribute();
+                            break;
+                        case "AttributeName":
+                            if (currentAttribute != null && reader.Read())
+                                currentAttribute.AttributeName = reader.Value;
+                            break;
+                        case "AttributeCode":
+                            if (currentAttribute != null && reader.Read())
+                                currentAttribute.AttributeCode = reader.Value;
+                            break;
+                        case "AttributeDescription":
+                            if (currentAttribute != null && reader.Read())
+                                currentAttribute.Description = reader.Value;
+                            break;
+                    }
                 }
-                attribute.AttributeName = fields[0];
-                attribute.AttributeCode = fields[0].Split('(')[1].Split(')')[0];
-                attribute.Description = fields[1];
-                this.CharacterAttributes.Add(attribute);
-                //Console.WriteLine(attribute.ToString());
+                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Attribute")
+                {
+                    if (currentAttribute != null)
+                    {
+                        characterAttributes.Add(currentAttribute);
+                        currentAttribute = null;
+                    }
+                }
             }
+        }
+                //this.CharacterAttributes.Add(attribute);
+                //Console.WriteLine(attribute.ToString());
+            
         }
         
 
         private void FillCharacterSkills()
         {
-            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\CharacterSkills.csv";
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\CharacterSkills.xml";
         
-           TextFieldParser parser = new TextFieldParser(loc);
-            
-            parser.TextFieldType = FieldType.Delimited;
-            parser.SetDelimiters(";");
-            while (!parser.EndOfData)
+           using (XmlReader reader = XmlReader.Create(loc))
+        {
+            CharacterSkill currentSkill = null;
+            string currentElement = null;
+
+            while (reader.Read())
             {
-                string[] fields = parser.ReadFields();
-                CharacterSkill skill = new CharacterSkill();
-                if(fields.Length !=2)
+                if (reader.IsStartElement())
                 {
-                    continue;
+                    currentElement = reader.Name;
+
+                    if (reader.Name == "Skill" && currentSkill == null)
+                    {
+                        currentSkill = new CharacterSkill();
+                    }
                 }
-                skill.SkillName = fields[0];
-                skill.Description = fields[1];
-                this.CharacterSkills.Add(skill);
-               // Console.WriteLine(skill.ToString());
+                else if (reader.NodeType == XmlNodeType.Text && currentSkill != null)
+                {
+                    switch (currentElement)
+                    {
+                        case "SkillName":
+                            currentSkill.SkillName = reader.Value;
+                            break;
+                        case "Specializations":
+                            currentSkill.Description = reader.Value;
+                            break;
+                    }
+                }
+                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Skill")
+                {
+                    if (currentSkill != null)
+                    {
+                        characterSkills.Add(currentSkill);
+                        currentSkill = null;
+                    }
+                }
             }
         }
+               // Console.WriteLine(skill.ToString());
+            }
+        
 
         private void FillCharacterCareers()
         {
-            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Careers.csv";
-        
-              TextFieldParser parser = new TextFieldParser(loc);
-            
-            parser.TextFieldType = FieldType.Delimited;
-            parser.SetDelimiters(";");
-            while (!parser.EndOfData)
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Careers.xml";
+          using (XmlReader reader = XmlReader.Create(loc))
+        {
+            Career currentCareer = null;
+            string currentElement = null;
+
+            while (reader.Read())
             {
-                string[] fields = parser.ReadFields();
-                Career career = new Career();
-                if(fields.Length !=6)
+                if (reader.IsStartElement())
                 {
-                    continue;
+                    currentElement = reader.Name;
+
+                    if (reader.Name == "Carreer")
+                    {
+                        currentCareer = new Career();
+                    }
                 }
-                career.Name = fields[0];
-                career.CheckAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == fields[1]);
-                career.SampleSkills= CreateSkillList(fields[2]); 
-                career.FinancialPotentialperTerm = new Tuple<int,int> (Convert.ToInt16(fields[3].Split('d')[0]),Convert.ToInt16(fields[3].Split('d')[1].TrimEnd('%')));
-                career.MaximumFinancialPotential= Convert.ToInt16(fields[4]);
-                career.SampleOccupations= fields[5].Split(',').ToList();
-                this.Careers.Add(career);
-                //Console.WriteLine(career.ToString());
+                else if (reader.NodeType == XmlNodeType.Text && currentCareer != null)
+                {
+                    switch (currentElement)
+                    {
+                        case "Beruf":
+                            currentCareer.Name = reader.Value;
+                            break;
+                        case "Attr.":
+                            currentCareer.CheckAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == reader.Value);
+                            break;
+                        case "Fertigkeiten":
+                            currentCareer.SampleSkills = CreateSkillList(reader.Value);
+                            break;
+                        case "DiceCount":
+                            currentCareer.DiceCountPerTerm = int.Parse(reader.Value);
+                            break;
+                        case "DiceType":
+                            currentCareer.DiceTypePerTurn = int.Parse(reader.Value);
+                            break;
+                        case "maxFIN":
+                            currentCareer.MaximumFinancialPotential = Convert.ToInt16(reader.Value);
+                            break;
+                        case "Funktion":
+                            currentCareer.SampleOccupations = reader.Value.Split(',').ToList();
+                            break;
+                    }
+                }
+                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Carreer")
+                {
+                    if (currentCareer != null)
+                    {
+                        careers.Add(currentCareer);
+                        currentCareer = new Career();
+                    }
+                }
+            }
+
             }
         }
         private List<CharacterSkill> CreateSkillList(string skills)
@@ -150,71 +229,149 @@ public List<CharacterOrigin> CharacterOrigins
 
         private void FillMetaTypes()
         {
-            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Metatypes.csv";
-        
-              TextFieldParser parser = new TextFieldParser(loc);
-            
-            parser.TextFieldType = FieldType.Delimited;
-            parser.SetDelimiters(";");
-            while (!parser.EndOfData)
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Metatypes.xml";
+         using (XmlReader reader = XmlReader.Create(loc))
+        {
+            Metatype currentMetatype = null;
+            string currentElement = null;
+
+            while (reader.Read())
             {
-                string[] fields = parser.ReadFields();
-                Metatype metatype =  new Metatype();
-                if(fields.Length !=4)
+                if (reader.IsStartElement())
                 {
-                    continue;
+                    currentElement = reader.Name;
+
+                    if (reader.Name == "Metatype")
+                    {
+                        currentMetatype = new Metatype();
+                         currentMetatype.AttributeModifiers = new List<Tuple<int, CharacterAttribute>>();
+                    }
                 }
-                List<string> rollRange = fields[0].Split('-').ToList();
-                metatype.RollRange = new Tuple<int,int>(Convert.ToInt16(rollRange[0]), Convert.ToInt16(rollRange[1]));
-                metatype.Name = fields[1];
-                metatype.AttributeModifiers = ParseMetatypeAttributes(fields[2]);
-                metatype.RaceSpecialities= fields[3].Split(',').ToList();
-                this.metaTypes.Add(metatype);
-                //Console.WriteLine(metatype.ToString());
+                else if (reader.NodeType == XmlNodeType.Text && currentMetatype != null)
+                {
+                    switch (currentElement)
+                    {
+                        case "Min":
+                            currentMetatype.DiceRangeMax = int.Parse(reader.Value);
+                            break;
+                        case "Max":
+                            currentMetatype.DiceRangeMin = int.Parse(reader.Value);
+                            break;
+                        case "Name":
+                            currentMetatype.Name = reader.Value;
+                            break;
+                        case "SkillAdjustments":
+                            currentMetatype.AttributeModifiers = ParseMetatypeAttributes(reader.Value);
+                            break;
+                        case "Modifiers":
+                            currentMetatype.RaceSpecialities = reader.Value.Split(',').ToList();
+                            break;
+                    }
+                }
+                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Metatype")
+                {
+                    if (currentMetatype != null)
+                    {
+                        metaTypes.Add(currentMetatype);
+                        currentMetatype = null;
+                    }
+                }
             }
+        }
+                
         }
 
          private void FillCharacterOrigins()
         {
-            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Origin.csv";
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Origin.xml";
         
-              TextFieldParser parser = new TextFieldParser(loc);
-            
-            parser.TextFieldType = FieldType.Delimited;
-            parser.SetDelimiters(";");
-            while (!parser.EndOfData)
+          using (XmlReader reader = XmlReader.Create(loc))
+        {
+            CharacterOrigin currentOrigin = null;
+            string currentElement = null;
+
+            while (reader.Read())
             {
-                string[] fields = parser.ReadFields();
-                CharacterOrigin origin =  new CharacterOrigin();
-                if(fields.Length !=7)
+                if (reader.IsStartElement())
                 {
-                    continue;
+                    currentElement = reader.Name;
+
+                    if (reader.Name == "Origin")
+                    {
+                        currentOrigin = new CharacterOrigin();
+                    }
                 }
-                List<string> rollRange = fields[0].Split('-').ToList();
-                origin.RollRange = new Tuple<int,int>(Convert.ToInt16(rollRange[0]), Convert.ToInt16(rollRange[1]));
-                origin.Name = fields[1];
-                origin.AttributeBoni=new List<CharacterAttribute>();
-                var bonusValues=fields[2].Trim().Split(',');
-                foreach(var bonusValue in bonusValues)
+                else if (reader.NodeType == XmlNodeType.Text && currentOrigin != null)
                 {
-                    origin.AttributeBoni.Add(this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == bonusValue.Trim()));
+                    switch (currentElement)
+                    {
+                        case "DiceRangeMin":
+                            currentOrigin.DiceRangeMin = int.Parse(reader.Value);
+                            break;
+                        case "diceRangMAx": // Correct the case mismatch
+                            currentOrigin.DiceRangeMax = int.Parse(reader.Value);
+                            break;
+                        case "OriginName":
+                            currentOrigin.Name = reader.Value;
+                            break;
+                        case "BonusAttributes":
+                            currentOrigin.AttributeBoni = ParseOriginAttributes(reader.Value);
+                            break;
+                        case "MalusAttributes":
+                            currentOrigin.AttributeMali = ParseOriginAttributes(reader.Value);
+                            break;
+                        case "DiceNumber":
+                            currentOrigin.FatePointsDiceNumber = int.Parse(reader.Value);
+                            break;
+                        case "DiceType":
+                            currentOrigin.FatePointsDiceType = int.Parse(reader.Value);
+                            break;
+                        case "DiceBonus":
+                            currentOrigin.FatePointsDiceBonus = int.Parse(reader.Value);
+                            break;
+                        case "StartAgeBase":
+                            currentOrigin.StartAgeBase = int.Parse(reader.Value);
+                            break;
+                        case "StartAgeDiceCount":
+                            currentOrigin.StartAgeDiceCount = int.Parse(reader.Value);
+                            break;
+                        case "StartAgeDiceType":
+                            currentOrigin.StartAgeDiceType = int.Parse(reader.Value);
+                            break;
+                        case "SampleJobs":
+                            currentOrigin.SampleJobs = reader.Value;
+                            break;
+                    }
                 }
-                origin.AttributeMali=new List<CharacterAttribute>();
-                var malusValues=fields[3].Trim().Split(',');
-                foreach(var malusValue in malusValues)
+                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Origin")
                 {
-                    origin.AttributeMali.Add(this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == malusValue.Trim()));
+                    if (currentOrigin != null)
+                    {
+                        characterOrigins.Add(currentOrigin);
+                        currentOrigin = null;
+                    }
                 }
-                var fateValues = fields[4].Trim().Split(' ');
-                origin.FatePointDice= new Tuple<int,int>(Convert.ToInt16(fateValues[0]),Convert.ToInt16(fateValues[1].Trim('d')));
-                origin.FatePointBonus=Convert.ToInt16(fateValues[2]);
-                var jobValues=fields[5].Split('+');
-                origin.BaseJobAge= Convert.ToInt16(jobValues[0]);
-                var jobDice = jobValues[1].Split('d');
-                origin.JobDice=new Tuple<int,int>(Convert.ToInt16(jobDice[0]),Convert.ToInt16(jobDice[1].Trim('J').Trim()));
-                origin.SampleJobs= fields[6];
-                characterOrigins.Add(origin);
             }
+        }
+
+        }
+
+        private List<CharacterAttribute> ParseOriginAttributes(string value)
+        {
+             
+            if(String.IsNullOrEmpty(value))
+            {
+                return new List<CharacterAttribute>();
+            }
+            var items= value.Split(',');
+            var characterAttributes= new List<CharacterAttribute>();
+            foreach(var item in items)
+            {            
+                CharacterAttribute  characterAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == item);
+                characterAttributes.Add(characterAttribute);
+            }
+            return characterAttributes;
+        
         }
 
         private List<Tuple<int, CharacterAttribute>> ParseMetatypeAttributes(string attributeModifiers)
@@ -234,5 +391,7 @@ public List<CharacterOrigin> CharacterOrigins
             }
             return characterAttributes;
         }
+
+        
     }
 }

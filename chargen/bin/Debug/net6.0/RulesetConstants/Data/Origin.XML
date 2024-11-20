@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Origins>
+  <Origin>
+    <DiceRangeMin>01</DiceRangeMin>
+    <diceRangMAx>25</diceRangMAx>
+    <OriginName>Wildnis / Badlands</OriginName>
+    <BonusAttributes>STR,WIK</BonusAttributes>
+    <MalusAttributes>CHA</MalusAttributes>
+    <FatePoints>
+      <DiceNumber>1</DiceNumber>
+      <DiceType>5</DiceType>
+      <DiceBonus>2</DiceBonus>
+    </FatePoints>
+    <StartAge>
+      <StartAgeBase>16</StartAgeBase>
+      <StartAgeDiceCount>1</StartAgeDiceCount>
+      <StartAgeDiceType>5</StartAgeDiceType>
+    </StartAge>
+    <SampleJobs> JEntertainer, Forscher, Gesetzeshüter, Händler, Krimineller, Militär, Techniker</SampleJobs>
+  </Origin>
+  <Origin>
+    <DiceRangeMin>26</DiceRangeMin>
+    <diceRangMAx>55</diceRangMAx>
+    <OriginName>Arbeiterkind</OriginName>
+    <BonusAttributes>TEC,WID</BonusAttributes>
+    <MalusAttributes>WIK</MalusAttributes>
+    <FatePoints>
+      <DiceNumber>1</DiceNumber>
+      <DiceType>5</DiceType>
+      <DiceBonus>1</DiceBonus>
+    </FatePoints>
+      <StartAge>
+    <StartAgeBase>18</StartAgeBase>
+    <StartAgeDiceCount>1</StartAgeDiceCount>
+    <StartAgeDiceType>10</StartAgeDiceType>
+      </StartAge>
+    <SampleJobs>Alle</SampleJobs>
+  </Origin>
+  <Origin>
+    <DiceRangeMin>56</DiceRangeMin>
+    <diceRangMAx>85</diceRangMAx>
+    <OriginName>Sprawlwurf</OriginName>
+    <BonusAttributes>GES, CHA</BonusAttributes>
+    <MalusAttributes>WID</MalusAttributes>
+    <FatePoints>
+      <DiceNumber>1</DiceNumber>
+      <DiceType>5</DiceType>
+      <DiceBonus>0</DiceBonus>
+    </FatePoints>
+    <StartAge>
+      <StartAgeBase>15</StartAgeBase>
+      <StartAgeDiceCount>1</StartAgeDiceCount>
+      <StartAgeDiceType>10</StartAgeDiceType>
+    </StartAge>
+    <SampleJobs>Entertainer, Krimineller, Händler, Militär, Techniker</SampleJobs>
+  </Origin>
+  <Origin>
+    <DiceRangeMin>86</DiceRangeMin>
+    <diceRangMAx> 100</diceRangMAx>
+    <OriginName>Konzernnachwuchs</OriginName>
+    <BonusAttributes>INT, CRD</BonusAttributes>
+    <MalusAttributes>STR</MalusAttributes>
+    <FatePoints>
+      <DiceNumber>1</DiceNumber>
+      <DiceType>5</DiceType>
+      <DiceBonus>-1</DiceBonus>
+    </FatePoints>
+    <StartAge>
+      <StartAgeBase>21</StartAgeBase>
+     <StartAgeDiceCount>1</StartAgeDiceCount>
+     <StartAgeDiceType>10</StartAgeDiceType>
+    </StartAge>
+    <SampleJobs>Alle außer Krimineller, (außerdem: 8% FIN ab Start)</SampleJobs>
+  </Origin>
+</Origins>

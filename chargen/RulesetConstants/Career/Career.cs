@@ -18,9 +18,10 @@ namespace chargen.Character.Career
 
         public List<CharacterSkill> SampleSkills { get; set; }
 
-        public Tuple<int,int> FinancialPotentialperTerm { get; set; } = new Tuple<int,int>(0,0);
-        
+        public int MyProperty { get; set; }
         public int MaximumFinancialPotential { get; set; }
+        public int DiceCountPerTerm { get; internal set; }
+        public int DiceTypePerTurn { get; internal set; }
 
         public Career() 
         {
