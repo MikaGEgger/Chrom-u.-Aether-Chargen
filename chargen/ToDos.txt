@@ -1,0 +1,8 @@
+Create issuses for following points:
+*Rearrange all classes to make a good structure
+*Add Pointbuy Logic
+*Add logic for Carreers
+*Finish PDF Exporter
+*Add Unit Tests
+*Make Application more robust
+*Add logging
