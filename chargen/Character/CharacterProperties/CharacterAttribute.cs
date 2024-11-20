@@ -1,3 +1,5 @@
+
+using System.Xml.Serialization;
 namespace chargen.Character.CharacterProperties
 {
     public class CharacterAttribute
@@ -11,12 +13,18 @@ namespace chargen.Character.CharacterProperties
         
 
         private string attributeName= "";
+
+        public CharacterAttribute()
+        {
+        }
+
         public string AttributeName
         {
             get { return attributeName; }
             set { attributeName = value; }
         }
 
+        [XmlIgnore]
         public string Description { get; set; }
 
         public int Value { get; set; }

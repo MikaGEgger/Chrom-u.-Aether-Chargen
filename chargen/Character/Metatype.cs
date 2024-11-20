@@ -1,24 +1,29 @@
-using System.Reflection.Metadata.Ecma335;
-using chargen.Character.CharacterProperties;
+using System.Xml.Serialization;
 
 namespace chargen.Character
 {
-    public class Metatype
+  public class Metatype
+  {
+    public Metatype()
     {
-      public string Name { get; set; }
+    }
+    public string Name { get; set; }
 
-     public List<Tuple<int, CharacterAttribute>> AttributeModifiers { get; set; }
+    public List<AttributeModifier> AttributeModifiers { get; set; }
 
-    
     public List<String> RaceSpecialities { get; set; }
-        public int DiceRangeMin { get; internal set; }
+  
+   [XmlIgnore]
+    public int DiceRangeMin { get; set; }
 
-          public int DiceRangeMax { get; internal set; }
+[XmlIgnore]
+    public int DiceRangeMax { get; set; }
 
-        public override string ToString()
+    public override string ToString()
     {
       return Name;
     }
-    }
-    
+  }
+
+
 }

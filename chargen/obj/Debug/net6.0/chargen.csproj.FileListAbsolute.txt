@@ -13,12 +13,7 @@ C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj
 C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.pdb
 C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\chargen.genruntimeconfig.cache
 C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\obj\Debug\net6.0\ref\chargen.dll
-c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Attributes.csv
-c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Careers.csv
-c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\CharacterSkills.csv
-c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Metatypes.csv
 c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\TitleCard.txt
-c:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Origin.CSV
 C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Attributes.xml
 C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\Careers.xml
 C:\Users\mikag\Documents\ChromuAetherChargen\Chrom-u.-Aether-Chargen\chargen\bin\Debug\net6.0\RulesetConstants\Data\CharacterSkills.xml

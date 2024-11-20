@@ -1,28 +1,49 @@
 using chargen.Character.CharacterProperties;
+using System.Xml.Serialization;
 
 namespace chargen.Character
 {
     public class CharacterOrigin
     {
+        public CharacterOrigin()
+        {
+        }
+        public string Name { get; set; }
 
-               public string Name { get; set; }
-        
         public List<CharacterAttribute> AttributeBoni { get; set; }
         public List<CharacterAttribute> AttributeMali { get; set; }
-        
+
+        [XmlIgnore]
         public int FatePointBonus { get; set; }
-       
+
+        [XmlIgnore]
         public int BaseJobAge { get; set; }
 
-       
-        public string SampleJobs { get; set;}
-        public int DiceRangeMin { get; internal set; }
-        public int DiceRangeMax { get; internal set; }
-        public int FatePointsDiceNumber { get; internal set; }
-        public int FatePointsDiceType { get; internal set; }
-        public int FatePointsDiceBonus { get; internal set; }
-        public int StartAgeBase { get; internal set; }
-        public int StartAgeDiceCount { get; internal set; }
-        public int StartAgeDiceType { get; internal set; }
+        [XmlIgnore]
+        public string SampleJobs { get; set; }
+
+        [XmlIgnore]
+        public int DiceRangeMin { get; set; }
+
+        [XmlIgnore]
+        public int DiceRangeMax { get; set; }
+
+        [XmlIgnore]
+        public int FatePointsDiceNumber { get; set; }
+
+        [XmlIgnore]
+        public int FatePointsDiceType { get; set; }
+
+        [XmlIgnore]
+        public int FatePointsDiceBonus { get; set; }
+
+        [XmlIgnore]
+        public int StartAgeBase { get; set; }
+
+        [XmlIgnore]
+        public int StartAgeDiceCount { get; set; }
+
+        [XmlIgnore]
+        public int StartAgeDiceType { get; set; }
     }
 }

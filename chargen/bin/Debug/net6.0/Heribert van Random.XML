@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Character xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LebenspunkteMax>0</LebenspunkteMax>
+  <LebenpunkteCurrent>0</LebenpunkteCurrent>
+  <ErschöpfungspunkteMax>0</ErschöpfungspunkteMax>
+  <ErschöpfungspunkteCurrent>0</ErschöpfungspunkteCurrent>
+  <Movement>0</Movement>
+  <Essence>0</Essence>
+  <Metatype>
+    <Name>Mensch</Name>
+    <RaceSpecialities>
+      <string>+1 Schickalspunkt</string>
+      <string>+1 Fertigkeit nach Wahl+1 Tier 1 Talent nach Wahl</string>
+      <string>-1 FP-Kosten für Talente bei Steigerungen</string>
+    </RaceSpecialities>
+    <DiceRangeMin>1</DiceRangeMin>
+    <DiceRangeMax>55</DiceRangeMax>
+  </Metatype>
+  <Prominence>0</Prominence>
+  <Finances>0</Finances>
+  <Origin>
+    <Name>Sprawlwurf</Name>
+    <AttributeBoni>
+      <CharacterAttribute>
+        <AttributeCode>GES</AttributeCode>
+        <AttributeName>Geschicklichkeit</AttributeName>
+        <Description>Fingerfertigkeit, Initiative und Reflexe eines Charakters.</Description>
+        <Value>35</Value>
+      </CharacterAttribute>
+      <CharacterAttribute xsi:nil="true" />
+    </AttributeBoni>
+    <AttributeMali>
+      <CharacterAttribute>
+        <AttributeCode>WID</AttributeCode>
+        <AttributeName>Widerstand</AttributeName>
+        <Description>hält fest, wie zäh ausdauernd und gesund man ist, bzw. wie gut man Treffer einsteckt</Description>
+        <Value>39</Value>
+      </CharacterAttribute>
+    </AttributeMali>
+    <FatePointBonus>0</FatePointBonus>
+    <BaseJobAge>0</BaseJobAge>
+    <SampleJobs>Entertainer, Krimineller, Händler, Militär, Techniker</SampleJobs>
+    <DiceRangeMin>56</DiceRangeMin>
+    <DiceRangeMax>85</DiceRangeMax>
+    <FatePointsDiceNumber>1</FatePointsDiceNumber>
+    <FatePointsDiceType>5</FatePointsDiceType>
+    <FatePointsDiceBonus>0</FatePointsDiceBonus>
+    <StartAgeBase>15</StartAgeBase>
+    <StartAgeDiceCount>1</StartAgeDiceCount>
+    <StartAgeDiceType>10</StartAgeDiceType>
+  </Origin>
+  <Name>Heribert van Random</Name>
+  <Attributes>
+    <CharacterAttribute>
+      <AttributeCode>BF</AttributeCode>
+      <AttributeName>Ballistische Fähigkeit</AttributeName>
+      <Description>Umgang mit Fernkampfwaffen</Description>
+      <Value>38</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>KG</AttributeCode>
+      <AttributeName>Kampfgeschick</AttributeName>
+      <Description>Fähigkeit im Nahkampf, bewaffnet und waffenlos</Description>
+      <Value>29</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>STR</AttributeCode>
+      <AttributeName>Stärke</AttributeName>
+      <Description>Körperkraft und Muskeln eines Charakters</Description>
+      <Value>39</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>WID</AttributeCode>
+      <AttributeName>Widerstand</AttributeName>
+      <Description>hält fest, wie zäh ausdauernd und gesund man ist, bzw. wie gut man Treffer einsteckt</Description>
+      <Value>39</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>GES</AttributeCode>
+      <AttributeName>Geschicklichkeit</AttributeName>
+      <Description>Fingerfertigkeit, Initiative und Reflexe eines Charakters.</Description>
+      <Value>35</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>INT</AttributeCode>
+      <AttributeName>Intelligenz</AttributeName>
+      <Description>Sinnesschärfe, Bildung und das Auffassungsvermögen eines Charakters</Description>
+      <Value>38</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>TEC</AttributeCode>
+      <AttributeName>Technologie</AttributeName>
+      <Description>Affinität des Charakters im Umgang mit Technik, Elektronik etc.</Description>
+      <Value>41</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>WIK</AttributeCode>
+      <AttributeName>Willenskraft</AttributeName>
+      <Description>Mut, psychische Resistenz sowie Widerstand gegen manche magischen Effekte</Description>
+      <Value>35</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>CHA</AttributeCode>
+      <AttributeName>Charisma</AttributeName>
+      <Description>Verbale Schlagfertigkeit, Ausstrahlung und Attraktivität eines Charakters</Description>
+      <Value>28</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>CRD</AttributeCode>
+      <AttributeName>Credibility</AttributeName>
+      <Description>Reputation des Charakters. Sie kann nicht nur durch die normale Charakterentwicklung, sondern auch durch das Verhalten des Charakters verändert werden.(s. Ruf und Soziales</Description>
+      <Value>38</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>ÄTH</AttributeCode>
+      <AttributeName>Äther</AttributeName>
+      <Description>symbolisiert die Verbindung des Charakters mit übernatürlichen Kräften, wie gut er sie wahrnehmen und potentiell kontrollieren kann. Mundane Charaktere können dieses Attribut ignorieren. Dieses Attribut wird rechnerisch auch über die Essenz verändert. Wenn die Essenz abnimmt, reduziert sich aliquot auch das Ätherattribut.</Description>
+      <Value>30</Value>
+    </CharacterAttribute>
+  </Attributes>
+</Character>

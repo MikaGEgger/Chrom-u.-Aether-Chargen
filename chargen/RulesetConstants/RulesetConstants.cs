@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using chargen.Character;
 using chargen.Character.Career;
 using chargen.Character.CharacterProperties;
-using Microsoft.VisualBasic.FileIO;
-
-using System.Reflection.Metadata.Ecma335;
 using System.Xml;
 
 namespace chargen.RulesetConstants
@@ -39,13 +32,13 @@ namespace chargen.RulesetConstants
             set { metaTypes = value; }
         }
 
-private List<CharacterOrigin> characterOrigins;
-public List<CharacterOrigin> CharacterOrigins
-{
-    get { return characterOrigins; }
-    set { characterOrigins = value; }
-}
-        
+        private List<CharacterOrigin> characterOrigins;
+        public List<CharacterOrigin> CharacterOrigins
+        {
+            get { return characterOrigins; }
+            set { characterOrigins = value; }
+        }
+
 
         public RulesetConstants()
         {
@@ -55,7 +48,6 @@ public List<CharacterOrigin> CharacterOrigins
             metaTypes = new List<Metatype>();
             characterOrigins = new List<CharacterOrigin>();
 
-
             FillCharacterAttributes();
             FillCharacterSkills();
             FillCharacterCareers();
@@ -63,159 +55,151 @@ public List<CharacterOrigin> CharacterOrigins
             FillCharacterOrigins();
         }
 
+
         private void FillCharacterAttributes()
         {
-
             string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Attributes.xml";
-        
-          
             using (XmlReader reader = XmlReader.Create(loc))
-        {
-            CharacterAttribute currentAttribute = null;
-
-            while (reader.Read())
             {
-                if (reader.IsStartElement())
+                CharacterAttribute currentAttribute = null;
+
+                while (reader.Read())
                 {
-                    switch (reader.Name)
+                    if (reader.IsStartElement())
                     {
-                        case "Attribute":
-                            currentAttribute = new CharacterAttribute();
-                            break;
-                        case "AttributeName":
-                            if (currentAttribute != null && reader.Read())
-                                currentAttribute.AttributeName = reader.Value;
-                            break;
-                        case "AttributeCode":
-                            if (currentAttribute != null && reader.Read())
-                                currentAttribute.AttributeCode = reader.Value;
-                            break;
-                        case "AttributeDescription":
-                            if (currentAttribute != null && reader.Read())
-                                currentAttribute.Description = reader.Value;
-                            break;
+                        switch (reader.Name)
+                        {
+                            case "Attribute":
+                                currentAttribute = new CharacterAttribute();
+                                break;
+                            case "AttributeName":
+                                if (currentAttribute != null && reader.Read())
+                                    currentAttribute.AttributeName = reader.Value;
+                                break;
+                            case "AttributeCode":
+                                if (currentAttribute != null && reader.Read())
+                                    currentAttribute.AttributeCode = reader.Value;
+                                break;
+                            case "AttributeDescription":
+                                if (currentAttribute != null && reader.Read())
+                                    currentAttribute.Description = reader.Value;
+                                break;
+                        }
                     }
-                }
-                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Attribute")
-                {
-                    if (currentAttribute != null)
+                    else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Attribute")
                     {
-                        characterAttributes.Add(currentAttribute);
-                        currentAttribute = null;
+                        if (currentAttribute != null)
+                        {
+                            characterAttributes.Add(currentAttribute);
+
+                        }
                     }
                 }
             }
         }
-                //this.CharacterAttributes.Add(attribute);
-                //Console.WriteLine(attribute.ToString());
-            
-        }
-        
 
         private void FillCharacterSkills()
         {
             string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\CharacterSkills.xml";
-        
-           using (XmlReader reader = XmlReader.Create(loc))
-        {
-            CharacterSkill currentSkill = null;
-            string currentElement = null;
-
-            while (reader.Read())
+            using (XmlReader reader = XmlReader.Create(loc))
             {
-                if (reader.IsStartElement())
-                {
-                    currentElement = reader.Name;
+                CharacterSkill currentSkill = null;
+                string currentElement = null;
 
-                    if (reader.Name == "Skill" && currentSkill == null)
-                    {
-                        currentSkill = new CharacterSkill();
-                    }
-                }
-                else if (reader.NodeType == XmlNodeType.Text && currentSkill != null)
+                while (reader.Read())
                 {
-                    switch (currentElement)
+                    if (reader.IsStartElement())
                     {
-                        case "SkillName":
-                            currentSkill.SkillName = reader.Value;
-                            break;
-                        case "Specializations":
-                            currentSkill.Description = reader.Value;
-                            break;
+                        currentElement = reader.Name;
+
+                        if (reader.Name == "Skill" && currentSkill == null)
+                        {
+                            currentSkill = new CharacterSkill();
+                        }
                     }
-                }
-                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Skill")
-                {
-                    if (currentSkill != null)
+                    else if (reader.NodeType == XmlNodeType.Text && currentSkill != null)
                     {
-                        characterSkills.Add(currentSkill);
-                        currentSkill = null;
+                        switch (currentElement)
+                        {
+                            case "SkillName":
+                                currentSkill.SkillName = reader.Value;
+                                break;
+                            case "Specializations":
+                                currentSkill.Description = reader.Value;
+                                break;
+                        }
+                    }
+                    else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Skill")
+                    {
+                        if (currentSkill != null)
+                        {
+                            characterSkills.Add(currentSkill);
+
+                        }
                     }
                 }
             }
         }
-               // Console.WriteLine(skill.ToString());
-            }
-        
 
         private void FillCharacterCareers()
         {
             string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Careers.xml";
-          using (XmlReader reader = XmlReader.Create(loc))
-        {
-            Career currentCareer = null;
-            string currentElement = null;
-
-            while (reader.Read())
+            using (XmlReader reader = XmlReader.Create(loc))
             {
-                if (reader.IsStartElement())
-                {
-                    currentElement = reader.Name;
+                Career currentCareer = null;
+                string currentElement = null;
 
-                    if (reader.Name == "Carreer")
-                    {
-                        currentCareer = new Career();
-                    }
-                }
-                else if (reader.NodeType == XmlNodeType.Text && currentCareer != null)
+                while (reader.Read())
                 {
-                    switch (currentElement)
+                    if (reader.IsStartElement())
                     {
-                        case "Beruf":
-                            currentCareer.Name = reader.Value;
-                            break;
-                        case "Attr.":
-                            currentCareer.CheckAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == reader.Value);
-                            break;
-                        case "Fertigkeiten":
-                            currentCareer.SampleSkills = CreateSkillList(reader.Value);
-                            break;
-                        case "DiceCount":
-                            currentCareer.DiceCountPerTerm = int.Parse(reader.Value);
-                            break;
-                        case "DiceType":
-                            currentCareer.DiceTypePerTurn = int.Parse(reader.Value);
-                            break;
-                        case "maxFIN":
-                            currentCareer.MaximumFinancialPotential = Convert.ToInt16(reader.Value);
-                            break;
-                        case "Funktion":
-                            currentCareer.SampleOccupations = reader.Value.Split(',').ToList();
-                            break;
+                        currentElement = reader.Name;
+
+                        if (reader.Name == "Carreer")
+                        {
+                            currentCareer = new Career();
+                        }
+                    }
+                    else if (reader.NodeType == XmlNodeType.Text && currentCareer != null)
+                    {
+                        switch (currentElement)
+                        {
+                            case "Beruf":
+                                currentCareer.Name = reader.Value;
+                                break;
+                            case "Attr.":
+                                currentCareer.CheckAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == reader.Value);
+                                break;
+                            case "Fertigkeiten":
+                                currentCareer.SampleSkills = CreateSkillList(reader.Value);
+                                break;
+                            case "DiceCount":
+                                currentCareer.DiceCountPerTerm = int.Parse(reader.Value);
+                                break;
+                            case "DiceType":
+                                currentCareer.DiceTypePerTurn = int.Parse(reader.Value);
+                                break;
+                            case "maxFIN":
+                                currentCareer.MaximumFinancialPotential = Convert.ToInt16(reader.Value);
+                                break;
+                            case "Funktion":
+                                currentCareer.SampleOccupations = reader.Value.Split(',').ToList();
+                                break;
+                        }
+                    }
+                    else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Carreer")
+                    {
+                        if (currentCareer != null)
+                        {
+                            careers.Add(currentCareer);
+
+                        }
                     }
                 }
-                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Carreer")
-                {
-                    if (currentCareer != null)
-                    {
-                        careers.Add(currentCareer);
-                        currentCareer = new Career();
-                    }
-                }
-            }
 
             }
         }
+
         private List<CharacterSkill> CreateSkillList(string skills)
         {
             List<CharacterSkill> skillList = new List<CharacterSkill>();
@@ -230,168 +214,161 @@ public List<CharacterOrigin> CharacterOrigins
         private void FillMetaTypes()
         {
             string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Metatypes.xml";
-         using (XmlReader reader = XmlReader.Create(loc))
-        {
-            Metatype currentMetatype = null;
-            string currentElement = null;
-
-            while (reader.Read())
+            using (XmlReader reader = XmlReader.Create(loc))
             {
-                if (reader.IsStartElement())
-                {
-                    currentElement = reader.Name;
+                Metatype currentMetatype = null;
+                string currentElement = null;
 
-                    if (reader.Name == "Metatype")
-                    {
-                        currentMetatype = new Metatype();
-                         currentMetatype.AttributeModifiers = new List<Tuple<int, CharacterAttribute>>();
-                    }
-                }
-                else if (reader.NodeType == XmlNodeType.Text && currentMetatype != null)
+                while (reader.Read())
                 {
-                    switch (currentElement)
+                    if (reader.IsStartElement())
                     {
-                        case "Min":
-                            currentMetatype.DiceRangeMax = int.Parse(reader.Value);
-                            break;
-                        case "Max":
-                            currentMetatype.DiceRangeMin = int.Parse(reader.Value);
-                            break;
-                        case "Name":
-                            currentMetatype.Name = reader.Value;
-                            break;
-                        case "SkillAdjustments":
-                            currentMetatype.AttributeModifiers = ParseMetatypeAttributes(reader.Value);
-                            break;
-                        case "Modifiers":
-                            currentMetatype.RaceSpecialities = reader.Value.Split(',').ToList();
-                            break;
+                        currentElement = reader.Name;
+
+                        if (reader.Name == "Metatype")
+                        {
+                            currentMetatype = new Metatype();
+                            
+                        }
                     }
-                }
-                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Metatype")
-                {
-                    if (currentMetatype != null)
+                    else if (reader.NodeType == XmlNodeType.Text && currentMetatype != null)
                     {
-                        metaTypes.Add(currentMetatype);
-                        currentMetatype = null;
+                        switch (currentElement)
+                        {
+                            case "Min":
+                                currentMetatype.DiceRangeMin = int.Parse(reader.Value);
+                                break;
+                            case "Max":
+                                currentMetatype.DiceRangeMax = int.Parse(reader.Value);
+                                break;
+                            case "Name":
+                                currentMetatype.Name = reader.Value;
+                                break;
+                            case "SkillAdjustments":
+                                currentMetatype.AttributeModifiers = ParseMetatypeAttributeBoni(reader.Value);
+                                break;
+                            case "Modifiers":
+                                currentMetatype.RaceSpecialities = reader.Value.Split(',').ToList();
+                                break;
+                        }
+                    }
+                    else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Metatype")
+                    {
+                        if (currentMetatype != null)
+                        {
+                            metaTypes.Add(currentMetatype);
+
+                        }
                     }
                 }
             }
         }
-                
-        }
 
-         private void FillCharacterOrigins()
+        private void FillCharacterOrigins()
         {
             string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Origin.xml";
-        
-          using (XmlReader reader = XmlReader.Create(loc))
-        {
-            CharacterOrigin currentOrigin = null;
-            string currentElement = null;
-
-            while (reader.Read())
+            using (XmlReader reader = XmlReader.Create(loc))
             {
-                if (reader.IsStartElement())
-                {
-                    currentElement = reader.Name;
+                CharacterOrigin currentOrigin = null;
+                string currentElement = null;
 
-                    if (reader.Name == "Origin")
-                    {
-                        currentOrigin = new CharacterOrigin();
-                    }
-                }
-                else if (reader.NodeType == XmlNodeType.Text && currentOrigin != null)
+                while (reader.Read())
                 {
-                    switch (currentElement)
+                    if (reader.IsStartElement())
                     {
-                        case "DiceRangeMin":
-                            currentOrigin.DiceRangeMin = int.Parse(reader.Value);
-                            break;
-                        case "diceRangMAx": // Correct the case mismatch
-                            currentOrigin.DiceRangeMax = int.Parse(reader.Value);
-                            break;
-                        case "OriginName":
-                            currentOrigin.Name = reader.Value;
-                            break;
-                        case "BonusAttributes":
-                            currentOrigin.AttributeBoni = ParseOriginAttributes(reader.Value);
-                            break;
-                        case "MalusAttributes":
-                            currentOrigin.AttributeMali = ParseOriginAttributes(reader.Value);
-                            break;
-                        case "DiceNumber":
-                            currentOrigin.FatePointsDiceNumber = int.Parse(reader.Value);
-                            break;
-                        case "DiceType":
-                            currentOrigin.FatePointsDiceType = int.Parse(reader.Value);
-                            break;
-                        case "DiceBonus":
-                            currentOrigin.FatePointsDiceBonus = int.Parse(reader.Value);
-                            break;
-                        case "StartAgeBase":
-                            currentOrigin.StartAgeBase = int.Parse(reader.Value);
-                            break;
-                        case "StartAgeDiceCount":
-                            currentOrigin.StartAgeDiceCount = int.Parse(reader.Value);
-                            break;
-                        case "StartAgeDiceType":
-                            currentOrigin.StartAgeDiceType = int.Parse(reader.Value);
-                            break;
-                        case "SampleJobs":
-                            currentOrigin.SampleJobs = reader.Value;
-                            break;
+                        currentElement = reader.Name;
+
+                        if (reader.Name == "Origin")
+                        {
+                            currentOrigin = new CharacterOrigin();
+                        }
                     }
-                }
-                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Origin")
-                {
-                    if (currentOrigin != null)
+                    else if (reader.NodeType == XmlNodeType.Text && currentOrigin != null)
                     {
-                        characterOrigins.Add(currentOrigin);
-                        currentOrigin = null;
+                        switch (currentElement)
+                        {
+                            case "DiceRangeMin":
+                                currentOrigin.DiceRangeMin = int.Parse(reader.Value);
+                                break;
+                            case "diceRangMAx": // Correct the case mismatch
+                                currentOrigin.DiceRangeMax = int.Parse(reader.Value);
+                                break;
+                            case "OriginName":
+                                currentOrigin.Name = reader.Value;
+                                break;
+                            case "BonusAttributes":
+                                currentOrigin.AttributeBoni = ParseOriginAttributes(reader.Value);
+                                break;
+                            case "MalusAttributes":
+                                currentOrigin.AttributeMali = ParseOriginAttributes(reader.Value);
+                                break;
+                            case "DiceNumber":
+                                currentOrigin.FatePointsDiceNumber = int.Parse(reader.Value);
+                                break;
+                            case "DiceType":
+                                currentOrigin.FatePointsDiceType = int.Parse(reader.Value);
+                                break;
+                            case "DiceBonus":
+                                currentOrigin.FatePointsDiceBonus = int.Parse(reader.Value);
+                                break;
+                            case "StartAgeBase":
+                                currentOrigin.StartAgeBase = int.Parse(reader.Value);
+                                break;
+                            case "StartAgeDiceCount":
+                                currentOrigin.StartAgeDiceCount = int.Parse(reader.Value);
+                                break;
+                            case "StartAgeDiceType":
+                                currentOrigin.StartAgeDiceType = int.Parse(reader.Value);
+                                break;
+                            case "SampleJobs":
+                                currentOrigin.SampleJobs = reader.Value;
+                                break;
+                        }
+                    }
+                    else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Origin")
+                    {
+                        if (currentOrigin != null)
+                        {
+                            characterOrigins.Add(currentOrigin);
+
+                        }
                     }
                 }
             }
-        }
-
         }
 
         private List<CharacterAttribute> ParseOriginAttributes(string value)
         {
-             
-            if(String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(value))
             {
                 return new List<CharacterAttribute>();
             }
-            var items= value.Split(',');
-            var characterAttributes= new List<CharacterAttribute>();
-            foreach(var item in items)
-            {            
-                CharacterAttribute  characterAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == item);
+            var items = value.Split(',');
+            var characterAttributes = new List<CharacterAttribute>();
+            foreach (var item in items)
+            {
+                CharacterAttribute characterAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == item);
                 characterAttributes.Add(characterAttribute);
             }
             return characterAttributes;
-        
         }
 
-        private List<Tuple<int, CharacterAttribute>> ParseMetatypeAttributes(string attributeModifiers)
+        private List<AttributeModifier> ParseMetatypeAttributeBoni(string attributeModifiers)
         {
-            if(String.IsNullOrEmpty(attributeModifiers))
+            if (String.IsNullOrEmpty(attributeModifiers))
             {
-                return new List<Tuple<int, CharacterAttribute>>();
+                return new List<AttributeModifier>();
             }
-            var itemsTuples= attributeModifiers.Split(',');
-            var characterAttributes= new List<Tuple<int,CharacterAttribute>>();
-            foreach(var tuple in itemsTuples)
+            var itemsTuples = attributeModifiers.Split(',');
+            var characterAttributes = new List<AttributeModifier>();
+            foreach (var tuple in itemsTuples)
             {
-                var values=tuple.Trim().Split(' ');
+                var values = tuple.Trim().Split(' ');
                 int modifier = Convert.ToInt16(values[0].Trim('%'));
-                CharacterAttribute  characterAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == values[1]);
-                characterAttributes.Add(new Tuple<int,CharacterAttribute>(modifier, characterAttribute));
+                CharacterAttribute characterAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == values[1]);
+                characterAttributes.Add(new AttributeModifier(characterAttribute, modifier));
             }
             return characterAttributes;
         }
-
-        
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using chargen.Character.CharacterProperties;
 
 namespace chargen.Character
 {
@@ -10,13 +7,70 @@ namespace chargen.Character
         
         public static Character CreateCharacter(RulesetConstants.RulesetConstants constants)
         {           
-           
+           Character charac = new Character();
             Console.WriteLine("\n\r =================================================================\n\r\n\r\n\r\n\r");
             Console.WriteLine("Enter Character Name:");
-            string characterName = Console.ReadLine();
-            Metatype metatype = SetMetaType(constants.MetaTypes);
-            CharacterOrigin origin= SetCharacterOrigin(constants.CharacterOrigins);
-            return new Character(characterName, metatype, origin);
+            charac.Name=Console.ReadLine();
+            charac.Metatype= SetMetaType(constants.MetaTypes);
+            charac.Origin=SetCharacterOrigin(constants.CharacterOrigins);
+            charac.Attributes = new List<CharacterProperties.CharacterAttribute>(constants.CharacterAttributes.ConvertAll(x => x));
+            charac.Attributes = SetAttributeValues(charac.Attributes);
+
+            return charac;
+        }
+
+        private static List<CharacterAttribute> SetAttributeValues(List<CharacterAttribute> attributes)
+        {
+             Console.WriteLine("Set Character Attribues: 1 - Diceroll, 2 - Pointbuy[NOT IMPLEMENTED], 0 - Random");
+           
+            int attributeselectionMode = 0;
+            
+
+            while (!(int.TryParse(Console.ReadLine(), out attributeselectionMode) && (attributeselectionMode >= 0 && attributeselectionMode <= 2)))
+            {
+                Console.Write("Invalid Input Parameter. Valid Parameters: [1 - Diceroll, 2 - Pointbuy[NOT IMPLEMENTED], 0 - Random]");
+            }
+            switch (attributeselectionMode)
+            {
+                case 0:
+                RollCharacterAttributes(attributes, false);
+                break;
+                case 1:
+                RollCharacterAttributes(attributes, true);
+                break;
+                case 2:
+                //PointBuy
+                break;
+            }
+            return attributes;
+        }
+
+        private static void RollCharacterAttributes(List<CharacterAttribute> attributes, bool manualMode)
+        {
+            Console.WriteLine($"Roll character attributes: {attributes.Count}");
+            foreach (CharacterAttribute attribute in attributes)
+            {
+                if(manualMode)
+                {
+                    Console.WriteLine("Press Enter to Roll for Attribute " + attribute.AttributeName);
+                    Console.ReadLine();
+                }
+
+                //3d10+20
+                int value=0;
+                for(int i =0;i<3;i++)
+                {
+                    value+=Random.Shared.Next(1,11);
+                }
+                value+=20;
+                attribute.Value = value;
+
+                if(manualMode)
+                {
+                    Console.WriteLine(attribute.AttributeName +" = " + attribute.Value);
+                }
+            }
+
         }
 
         private static CharacterOrigin SetCharacterOrigin(List<CharacterOrigin> characterOrigins)
@@ -55,23 +109,25 @@ namespace chargen.Character
                 int j = i + 1;
                 metatypeNames = metatypeNames + j + " - " + metatypes[i].Name + ", ";
             }
-            Console.WriteLine("Chose Your Origin: [" + metatypes + " 0 - Random]");
-            int metatypeInput = 0;
-            int metatypeValue = 0;
+            Console.WriteLine("Chose Your Metatype: [" + metatypeNames + " 0 - Random]");
+            int metatypeInput = 0;            
 
             while (!(int.TryParse(Console.ReadLine(), out metatypeInput) && (metatypeInput >= 0 && metatypeInput <= 5)))
             {
                 Console.Write("Invalid Input Parameter. Valid Parameters: [" + metatypeNames + " 0 - Random]");
             }
+            Metatype metatype = new Metatype();
             if (metatypeInput == 0)
             {
-                metatypeValue = Random.Shared.Next(1, 100);
+                int metatypeValue = Random.Shared.Next(1, 100);
+              metatype = metatypes.FirstOrDefault(x=>x.DiceRangeMin<=metatypeValue&&x.DiceRangeMax>=metatypeValue);
             }
             else
             {
-                metatypeValue = metatypes[metatypeInput - 1].DiceRangeMin + 1;
+                metatype = metatypes[metatypeInput - 1];
             }
-            Metatype metatype = metatypes.FirstOrDefault(x => x.DiceRangeMin <= metatypeValue && x.DiceRangeMax >= metatypeValue);
+            
+            
             return metatype;
         }
     }

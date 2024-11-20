@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Character xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LebenspunkteMax>0</LebenspunkteMax>
+  <LebenpunkteCurrent>0</LebenpunkteCurrent>
+  <ErschöpfungspunkteMax>0</ErschöpfungspunkteMax>
+  <ErschöpfungspunkteCurrent>0</ErschöpfungspunkteCurrent>
+  <Movement>0</Movement>
+  <Essence>0</Essence>
+  <Metatype>
+    <Name>Mensch</Name>
+    <RaceSpecialities>
+      <string>+1 Schickalspunkt</string>
+      <string>+1 Fertigkeit nach Wahl+1 Tier 1 Talent nach Wahl</string>
+      <string>-1 FP-Kosten für Talente bei Steigerungen</string>
+    </RaceSpecialities>
+  </Metatype>
+  <Prominence>0</Prominence>
+  <Finances>0</Finances>
+  <Origin>
+    <Name>Wildnis / Badlands</Name>
+    <AttributeBoni>
+      <CharacterAttribute>
+        <AttributeCode>STR</AttributeCode>
+        <AttributeName>Stärke</AttributeName>
+        <Value>40</Value>
+      </CharacterAttribute>
+      <CharacterAttribute>
+        <AttributeCode>WIK</AttributeCode>
+        <AttributeName>Willenskraft</AttributeName>
+        <Value>40</Value>
+      </CharacterAttribute>
+    </AttributeBoni>
+    <AttributeMali>
+      <CharacterAttribute>
+        <AttributeCode>CHA</AttributeCode>
+        <AttributeName>Charisma</AttributeName>
+        <Value>28</Value>
+      </CharacterAttribute>
+    </AttributeMali>
+  </Origin>
+  <Name>Heribert von Random</Name>
+  <Attributes>
+    <CharacterAttribute>
+      <AttributeCode>BF</AttributeCode>
+      <AttributeName>Ballistische Fähigkeit</AttributeName>
+      <Value>43</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>KG</AttributeCode>
+      <AttributeName>Kampfgeschick</AttributeName>
+      <Value>26</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>STR</AttributeCode>
+      <AttributeName>Stärke</AttributeName>
+      <Value>40</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>WID</AttributeCode>
+      <AttributeName>Widerstand</AttributeName>
+      <Value>35</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>GES</AttributeCode>
+      <AttributeName>Geschicklichkeit</AttributeName>
+      <Value>36</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>INT</AttributeCode>
+      <AttributeName>Intelligenz</AttributeName>
+      <Value>40</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>TEC</AttributeCode>
+      <AttributeName>Technologie</AttributeName>
+      <Value>33</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>WIK</AttributeCode>
+      <AttributeName>Willenskraft</AttributeName>
+      <Value>40</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>CHA</AttributeCode>
+      <AttributeName>Charisma</AttributeName>
+      <Value>28</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>CRD</AttributeCode>
+      <AttributeName>Credibility</AttributeName>
+      <Value>38</Value>
+    </CharacterAttribute>
+    <CharacterAttribute>
+      <AttributeCode>ÄTH</AttributeCode>
+      <AttributeName>Äther</AttributeName>
+      <Value>34</Value>
+    </CharacterAttribute>
+  </Attributes>
+</Character>

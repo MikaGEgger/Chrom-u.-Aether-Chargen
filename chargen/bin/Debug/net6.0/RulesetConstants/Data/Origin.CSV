@@ -1,5 +1,0 @@
-DiceRangeMin;diceRangMAx;OriginName;BonusAttributes;MalusAttributes;DiceNumber;DiceType;DiceBonus;StartAgeBase;StartAgeDiceCount;StartAgeDiceType;SampleJobs
-01;25;Wildnis / Badlands;STR,WIK;CHA;1;5;2;16;1;5; JEntertainer, Forscher, Gesetzeshüter, Händler, Krimineller, Militär, Techniker
-26;55;Arbeiterkind;TEC,WID;WIK;1;5;1;18;1;10;Alle
-56;85;Sprawlwurf;GES, CHA;WID;1;5;0;15;1;10;Entertainer, Krimineller, Händler, Militär, Techniker
-86; 100;Konzernnachwuchs;INT, CRD;STR;1;5;-1;21;1;10;Alle außer Krimineller, (außerdem: 8% FIN ab Start)

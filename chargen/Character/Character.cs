@@ -1,14 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using chargen.Character.CharacterProperties;
 
 namespace chargen.Character
 {
     public class Character
     {
-        public Character() 
+        public Character()
         {
-            this. Metatype= new Metatype();   
-            this.Origin = new CharacterOrigin();      
-   
         }
 
         public Character(string? characterName, Metatype metatype, CharacterOrigin origin)
@@ -37,11 +35,16 @@ namespace chargen.Character
         public CharacterOrigin Origin { get; set; }
 
         public string Name { get; set; }
-      
+
+        public List<CharacterAttribute> Attributes { get; set; }
+
+        public List<CharacterSkill> Skills { get; set; }
 
         public override string ToString()
         {
-            return "Name: "+Name+" Metatype: "+Metatype.ToString();
+            return "Name: " + Name + " Metatype: " + Metatype.ToString();
         }
+
+
     }
 }
