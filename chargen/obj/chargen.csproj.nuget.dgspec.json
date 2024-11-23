@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {}
+    "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {
+    "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
+        "projectUniqueName": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
         "projectName": "chargen",
-        "projectPath": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
+        "projectPath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
         "packagesPath": "C:\\Users\\mikag\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\obj\\",
+        "outputPath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mikag\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net8.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net8.0-windows7.0": {
+            "targetAlias": "net8.0-windows",
             "projectReferences": {}
           }
         },
@@ -42,8 +42,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
           "dependencies": {
             "itext": {
               "target": "Package",
@@ -65,30 +65,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

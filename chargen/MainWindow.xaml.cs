@@ -1,10 +1,32 @@
-﻿using chargen.Character;
+﻿using System.IO;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using chargen.Character;
 using chargen.RulesetConstants;
-internal class Program
+
+namespace MyNewApp;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    private static void Main(string[] args)
+    public MainWindow()
     {
-      Console.Title = "C&Ä CharaGen v. 0.1 ";
+        InitializeComponent();
+    }
+
+private void DoStuff()
+{
+    Console.Title = "C&Ä CharaGen v. 0.1 ";
         Console.WriteLine("Chrom & Äther Character Generator v 0.1");
         Console.WriteLine("\n\r\n\r\n\r\n\r=================================================================\n\r");
         printTitleCard();
@@ -33,4 +55,5 @@ internal class Program
     sr.Close();
    
     }
+
 }
