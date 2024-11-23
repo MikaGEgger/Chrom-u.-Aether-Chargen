@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <None Remove="Logo.png" />
+    <None Remove="Views\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="itext" Version="9.0.0" />
@@ -26,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Logo.png" />
+    <Resource Include="Views\Logo.png" />
   </ItemGroup> 
 
 </Project>

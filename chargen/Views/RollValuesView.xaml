@@ -6,5 +6,6 @@
         <TextBlock Text="Roll Your Values" FontSize="18" HorizontalAlignment="Center" Margin="0,0,10,0"/>
         <Button Content="Roll Dice" Width="120" Height="30" Margin="0,5,0,5"/>
         <Button Content="Back" Width="120" Height="30" Click="Back_Click"/>
-    </StackPanel>
+		<Image Height="100" Width="100"/>
+	</StackPanel>
 </UserControl>

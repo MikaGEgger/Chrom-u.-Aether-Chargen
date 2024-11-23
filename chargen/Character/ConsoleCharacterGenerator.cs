@@ -151,7 +151,6 @@ namespace chargen.Character
             charac.Metatype = Random.Shared.GetItems(constants.MetaTypes.ToArray(), 1)[0];
             charac.Origin = Random.Shared.GetItems(constants.CharacterOrigins.ToArray(), 1)[0];
             charac.Attributes = DeepCopyObjectExtensions.DeepCopy(constants.CharacterAttributes.ConvertAll(x => x));
-            //charac.Attributes = SetAttributeValues(charac.Attributes, charac.Metatype.AttributeModifiers);
             RollCharacterAttributes(charac.Attributes, false, charac.Metatype.AttributeModifiers);
             charac.CreateComputedElements();
             return charac;

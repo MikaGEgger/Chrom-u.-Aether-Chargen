@@ -1,7 +1,8 @@
 <Window x:Class="WpfApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Character Generation" Height="400" Width="600">
+        Title="Character Generation"
+		Height="1080" Width="1920">
     <Grid>
         <StackPanel Orientation="Horizontal" Height="50" Background="#EEE" VerticalAlignment="Top">
             <TextBlock Text="Character Generation" FontSize="18" 

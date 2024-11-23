@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {}
+    "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {
+    "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
+        "projectUniqueName": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
         "projectName": "chargen",
-        "projectPath": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
+        "projectPath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
         "packagesPath": "C:\\Users\\mikag\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\obj\\",
+        "outputPath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
