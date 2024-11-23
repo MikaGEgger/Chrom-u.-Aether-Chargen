@@ -15,9 +15,17 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
    </Content>
 </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="Logo.png" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="itext" Version="9.0.0" />
     <PackageReference Include="itext.bouncy-castle-adapter" Version="9.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Logo.png" />
   </ItemGroup> 
 
 </Project>

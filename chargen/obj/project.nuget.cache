@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j0vIfhtbD4I=",
+  "dgSpecHash": "82pgfTvsL90=",
   "success": true,
-  "projectFilePath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
+  "projectFilePath": "c:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mikag\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
     "C:\\Users\\mikag\\.nuget\\packages\\itext\\9.0.0\\itext.9.0.0.nupkg.sha512",

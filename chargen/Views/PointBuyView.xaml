@@ -1,0 +1,23 @@
+<UserControl x:Class="WpfApp.Views.PointBuyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="300" Width="400">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" >
+        <TextBlock Text="Point Buy System" FontSize="18" HorizontalAlignment="Center" Margin="0,0,10,0"/>
+        <TextBlock Text="Distribute your points:" FontSize="14"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Strength:"/>
+            <TextBox Width="50"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+            <TextBlock Text="Dexterity:"/>
+            <TextBox Width="50"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+            <TextBlock Text="Intelligence:"/>
+            <TextBox Width="50"/>
+        </StackPanel>
+        <Button Content="Submit" Width="120" Height="30" Margin="10" Click="Submit_Click"/>
+        <Button Content="Back" Width="120" Height="30" Click="Back_Click"/>
+    </StackPanel>
+</UserControl>
