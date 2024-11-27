@@ -1,7 +1,7 @@
 using chargen.Character.CharacterProperties;
 using System.Xml.Serialization;
 
-namespace chargen.Character
+namespace chargen.Character.Career
 {
     public class CharacterOrigin
     {
@@ -16,7 +16,7 @@ namespace chargen.Character
         [XmlIgnore]
         public List<CharacterAttribute> AttributeMali { get; set; }
 
-       
+
         public int FatePointBonus { get; set; }
 
         [XmlIgnore]

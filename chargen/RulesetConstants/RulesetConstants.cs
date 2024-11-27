@@ -32,6 +32,15 @@ namespace chargen.RulesetConstants
             set { metaTypes = value; }
         }
 
+        private List<Archetype> archetypes;
+
+        public List<Archetype> Archetypes
+        {
+            get { return archetypes; }
+            set { archetypes = value; }
+        }
+
+
         private List<CharacterOrigin> characterOrigins;
         public List<CharacterOrigin> CharacterOrigins
         {
@@ -47,14 +56,56 @@ namespace chargen.RulesetConstants
             careers = new List<Career>();
             metaTypes = new List<Metatype>();
             characterOrigins = new List<CharacterOrigin>();
+            archetypes = new List<Archetype>();
 
             FillCharacterAttributes();
             FillCharacterSkills();
             FillCharacterCareers();
             FillMetaTypes();
             FillCharacterOrigins();
+            FillArchetypes();
         }
+        private void FillArchetypes()
+        {
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Archetypes.xml";
+            using (XmlReader reader = XmlReader.Create(loc))
+            {
+                Archetype currentArchetype = null;
 
+                while (reader.Read())
+                {
+                    if (reader.IsStartElement())
+                    {
+                        switch (reader.Name)
+                        {
+                            case "Archetype":
+                                currentArchetype = new Archetype();
+                                break;
+                            case "Name":
+                                if (currentArchetype != null && reader.Read())
+                                    currentArchetype.Name = reader.Value;
+                                break;
+                            case "Description":
+                                if (currentArchetype != null && reader.Read())
+                                    currentArchetype.Description = reader.Value;
+                                break;
+                            case "Skills":
+                                if (currentArchetype != null && reader.Read())
+                                    currentArchetype.Skills = new List<string>(reader.Value.Split(','));
+                                break;
+                        }
+                    }
+                    else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Archetype")
+                    {
+                        if (currentArchetype != null)
+                        {
+                            archetypes.Add(currentArchetype);
+
+                        }
+                    }
+                }
+            }
+        }
 
         private void FillCharacterAttributes()
         {

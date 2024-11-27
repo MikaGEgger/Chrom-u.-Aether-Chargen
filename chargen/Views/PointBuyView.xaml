@@ -2,27 +2,88 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="Auto" Width="Auto">
-	<StackPanel Margin="10" VerticalAlignment="Top" HorizontalAlignment="Center" >
-		<Label Content="Enter Character Name"/>
-		<TextBox Width="200" Height="30" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
-                 />
+	<Grid Margin="10">
+		<!-- Layout: Two Columns -->
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
 
-		<TextBlock Text="Distribute Points:" FontSize="16" Margin="0,10,0,5"/>
-		<ItemsControl ItemsSource="{Binding Attributes}">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Orientation="Horizontal" Margin="5">
-						<TextBlock Text="{Binding AttributeName}" Width="150"/>
-						<TextBox Width="50" Text="{Binding Points, UpdateSourceTrigger=PropertyChanged}" 
-                                 HorizontalAlignment="Right"/>
-					</StackPanel>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
+		<!-- Left Column: Attributes -->
+		<StackPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
+			<Label Content="Enter Character Name"/>
+			<TextBox Width="200" Height="30" Text="{Binding CharacterToBeCreated.Name, UpdateSourceTrigger=PropertyChanged}" 
+         />
+			<StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+				<!-- Metatype Dropdown -->
+				<StackPanel>
+					<TextBlock Text="Metatype" FontSize="14" Margin="0,0,0,5"/>
+					<ComboBox Width="150" ItemsSource="{Binding AvailableMetatypes}" 
+                  SelectedItem="{Binding CharacterToBeCreated.Metatype, UpdateSourceTrigger=PropertyChanged}"
+                  DisplayMemberPath="Name"/>
+				</StackPanel>
 
-		<Button Content="Submit" Width="120" Margin="0,10,0,0" Click="Submit_Click"/>
-		<Button Content="Back" Width="120" Click="Back_Click"/>
-		<Image Height="100" Width="100" Source="/Logo.png"/>
-	</StackPanel>
+				<!-- Archetype Dropdown -->
+				<StackPanel>
+					<TextBlock Text="Archetype" FontSize="14" Margin="0,0,0,5"/>
+					<ComboBox Width="150" ItemsSource="{Binding AvailableArchetypes}" 
+                  SelectedItem="{Binding CharacterToBeCreated.Archetype, UpdateSourceTrigger=PropertyChanged}"/>
+				</StackPanel>
+			</StackPanel>
+
+			<StackPanel>
+				<TextBlock Text="Origin" FontSize="14" Margin="0,0,0,5"/>
+				<ComboBox Width="150" ItemsSource="{Binding AvailableOrigins}" 
+                  SelectedItem="{Binding CharacterToBeCreated.Origin, UpdateSourceTrigger=PropertyChanged}"
+                  DisplayMemberPath="Name"/>
+			</StackPanel>
+
+			<TextBlock Text="Distribute Points:" FontSize="16" Margin="0,10,0,5"/>
+			<ItemsControl ItemsSource="{Binding CharacterToBeCreated.Attributes}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal" Margin="5">
+							<TextBlock Text="{Binding AttributeName}" Width="150"/>
+							<TextBox Width="50" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="ValidationTextBox" TextChanged="textChangedEventHandler"
+                                     HorizontalAlignment="Right"/>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Total Attributes:" Width="150"/>
+				<TextBlock Text="{Binding TotalAttributesSum}" FontWeight="Bold"/>
+			</StackPanel>
+		</StackPanel>
+
+		<StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+			<TextBlock Text="Character Computed Values:" FontSize="16" Margin="0,10,0,5"/>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Lebenspunkte:" Width="150"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.LebenspunkteMax}" FontWeight="Bold"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="EP:" Width="150"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.ErschoepfungspunkteMax}" FontWeight="Bold"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Movement:" Width="150"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.Movement}" FontWeight="Bold"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Mana:" Width="150"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.Mana}" FontWeight="Bold"/>
+			</StackPanel>
+		</StackPanel>
+
+		<!-- Bottom Row: Submit and Back Buttons -->
+		<StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+			<Button Content="Submit" Width="120" Height="30" Click="Submit_Click"/>
+			<Button Content="Back" Width="120" Height="30" Click="Back_Click"/>
+			<Image Height="100" Width="100" Source="/Logo.png"/>
+
+		</StackPanel>
+	</Grid>
+	
 	
 </UserControl>

@@ -1,4 +1,5 @@
 
+using System.ComponentModel;
 using System.Xml.Serialization;
 namespace chargen.Character.CharacterProperties
 {
@@ -28,6 +29,7 @@ namespace chargen.Character.CharacterProperties
         public string Description { get; set; }
 
         public int Value { get; set; }
+        public Action<object, PropertyChangedEventArgs> PropertyChanged { get; internal set; }
 
         public override string ToString()
         {

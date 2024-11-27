@@ -1,0 +1,42 @@
+<Archetypes>
+  <Archetype>
+    <Name>Ätherbegabter</Name>
+    <Description>Personen mit starkem magischen Talent beginnen als dieser Archetyp, der ihnen die Möglichkeit gibt, mehr von der ätherischen, erwachten Welt und ihren Verhältnissen zu verstehen.</Description>
+    <Skills>Wissen / Fremdsprache (Art), Arkana, Handwerk, Menschenkenntnis</Skills>
+  </Archetype>
+  <Archetype>
+    <Name>Bandit</Name>
+    <Description>Schnell, lautlos, tödlich. Meisterdiebe, Spione und Assassinen haben ihren Karriereweg als Banditen begonnen.</Description>
+    <Skills>Akrobatik, Athletik, Bodenfahrzeuge, Heimlichkeit</Skills>
+  </Archetype>
+  <Archetype>
+    <Name>Hacker</Name>
+    <Description>Der Hacker benutzt Angriffsprogramme und seine Hardware, um die Kontrolle über elektronische Geräte zu übernehmen, Informationen zu erlangen und sein Team zu unterstützen. Als “Tramper” kann er sein Team anleiten, ihn zu einem “Netrun” zu begleiten.</Description>
+    <Skills>Wissen / Fremdsprache (Art), Bürokratie, Elektronik, Maschinenbau</Skills>
+  </Archetype>
+  <Archetype>
+    <Name>Doc</Name>
+    <Description>Geschulte Mediziner, die ihre Fertigkeiten einsetzen, um Verwundete wieder aufzurichten oder defekte Kybernetik zu reparieren.</Description>
+    <Skills>Feldkunde, Maschinenbau, Medizin, Wahrnehmung</Skills>
+  </Archetype>
+  <Archetype>
+    <Name>Enforcer</Name>
+    <Description>Eine Waffe auf Beinen, vielseitig im Kampf und häufig kybernetisch, ätherisch oder mittels einer Mischung auf maximale Effizienz im Krieg auf der Straße getrimmt.</Description>
+    <Skills>Athletik, Einschüchterung, Waffenfertigkeit (Art), Wahrnehmung</Skills>
+  </Archetype>
+  <Archetype>
+    <Name>Ermittler / Face</Name>
+    <Description>Ein hübsches Gesicht, eine süße Stimme, unschlagbarer Scharfsinn oder ein Auge fürs Detail. Allesamt Charakteristika von Personen, die Hinweise verknüpfen und sich sicher am sozialen Parkett bewegen.</Description>
+    <Skills>Menschenkenntnis, Überreden, Vorführung, Wahrnehmung</Skills>
+  </Archetype>
+  <Archetype>
+    <Name>Fahrer / Rigger</Name>
+    <Description>Rigger sind Allzweckwerkzeuge. Mit ihren Drohnen unterstützen sie ihre Teamkollegen in der Aufklärung, dem Kampf oder dem Transport. Darüber hinaus sind sie oft auch selbst geübte Piloten, die eins mit ihrer Maschine sind und diese als Erweiterung ihres eigenen Körpers verwenden.</Description>
+    <Skills>Bodenfahrzeuge, Luftfahrzeuge, Maschinenbau, Navigation</Skills>
+  </Archetype>
+  <Archetype>
+    <Name>Stratege</Name>
+    <Description>Der Charakter mit dem Plan und dem Ersatzplan, falls der erste Plan schief geht. Ausgezeichnet mit einem scharfen Verstand und genug Flexibilität, um den sich stets ändernden Bedingungen von Straßenschlachten gewachsen zu sein.</Description>
+    <Skills>Wissen / Fremdsprache (Art), Bürokratie, Feldkunde, Wahrnehmung</Skills>
+  </Archetype>
+</Archetypes>

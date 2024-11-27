@@ -1,6 +1,7 @@
 using chargen.Character.CharacterProperties;
 using Baksteen.Extensions.DeepCopy;
 using System;
+using chargen.Character.Career;
 
 
 namespace chargen.Character
