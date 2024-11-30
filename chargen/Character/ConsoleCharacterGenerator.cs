@@ -1,5 +1,8 @@
 using chargen.Character.CharacterProperties;
 using Baksteen.Extensions.DeepCopy;
+using System;
+using chargen.Character.Career;
+using System.Collections.ObjectModel;
 
 
 namespace chargen.Character
@@ -12,12 +15,10 @@ namespace chargen.Character
            Character charac = new Character();
             Console.WriteLine("\n\r =================================================================\n\r\n\r\n\r\n\r");
             Console.WriteLine("Enter Character Name:");
-            charac.Name=Console.ReadLine();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
             charac.Metatype= SetMetaType(constants.MetaTypes);
             charac.Origin= SetCharacterOrigin(constants.CharacterOrigins);
-            charac.Attributes = DeepCopyObjectExtensions.DeepCopy(constants.CharacterAttributes.ConvertAll(x => x));
-            charac.Attributes = SetAttributeValues(charac.Attributes,charac.Metatype.AttributeModifiers);
-            charac.CreateComputedElements();
+            
             return charac;
         }  
         
@@ -144,6 +145,17 @@ namespace chargen.Character
             
             
             return metatype;
+        }
+
+        internal static Character CreateRandomCharacter(RulesetConstants.RulesetConstants constants)
+        {
+           Character charac = new Character();
+            charac.Metatype = Random.Shared.GetItems(constants.MetaTypes.ToArray(), 1)[0];
+            charac.Origin = Random.Shared.GetItems(constants.CharacterOrigins.ToArray(), 1)[0];
+            charac.Attributess = new List<CharacterAttribute>(constants.CharacterAttributes);
+            RollCharacterAttributes(charac.Attributess, false, charac.Metatype.AttributeModifiers);
+            charac.CreateComputedElements();
+            return charac;
         }
     }
 }

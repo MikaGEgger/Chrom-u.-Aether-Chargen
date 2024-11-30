@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="WpfApp.Views.PointBuyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="AliceBlue">
+	<Grid Margin="10">
+		<!-- Define Grid Layout -->
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="2*" />
+			<ColumnDefinition Width="1*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="22*" />
+			<RowDefinition Height="59*"/>
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<!-- Left Column: Character Attributes -->
+		<StackPanel Grid.Column="0" VerticalAlignment="Center" Grid.RowSpan="2">
+
+			<!-- Character Name on One Line -->
+			<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+				<TextBlock Text="Character Name:" FontSize="12" VerticalAlignment="Center" Margin="0,0,5,0"/>
+				<TextBox Width="200" Height="25" Text="{Binding CharacterToBeCreated.Name, UpdateSourceTrigger=PropertyChanged}"/>
+			</StackPanel>
+
+			<!-- Options in a Single Line -->
+			<StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Stretch">
+				<!-- Metatype Dropdown -->
+				<StackPanel Margin="5,0,5,0">
+					<TextBlock Text="Metatype" FontSize="12" />
+					<ComboBox Width="120" ItemsSource="{Binding AvailableMetatypes}" 
+                              SelectedItem="{Binding CharacterToBeCreated.Metatype, UpdateSourceTrigger=PropertyChanged}" 
+                              DisplayMemberPath="Name"/>
+				</StackPanel>
+
+				<!-- Archetype Dropdown -->
+				<StackPanel Margin="5,0,5,0">
+					<TextBlock Text="Archetype" FontSize="12" />
+					<ComboBox Width="120" ItemsSource="{Binding AvailableArchetypes}" 
+                              SelectedItem="{Binding CharacterToBeCreated.Archetype, UpdateSourceTrigger=PropertyChanged}"/>
+				</StackPanel>
+
+				<!-- Origin Dropdown -->
+				<StackPanel Margin="5,0,5,0">
+					<TextBlock Text="Origin" FontSize="12" />
+					<ComboBox Width="120" ItemsSource="{Binding AvailableOrigins}" 
+                              SelectedItem="{Binding CharacterToBeCreated.Origin, UpdateSourceTrigger=PropertyChanged}" 
+                              DisplayMemberPath="Name"/>
+				</StackPanel>
+			</StackPanel>
+
+			<TextBlock Text="Distribute Attributes:" FontSize="14" FontWeight="Bold" Margin="0,10,0,5"/>
+
+			<StackPanel Orientation="Horizontal" Margin="5,0,5,5">
+				<TextBlock Text="Attribute Name" Width="150" FontWeight="Bold" FontSize="12"/>
+				<TextBlock Text="Value" Width="50" FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
+				<TextBlock Text="Actual Value" Width="50" FontWeight="Bold" FontSize="12" TextAlignment="Center"/>
+			</StackPanel>
+
+			<ScrollViewer VerticalScrollBarVisibility="Auto" Height="333">
+				<ItemsControl ItemsSource="{Binding CharacterToBeCreated.Attributess}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal" Margin="1">
+								<TextBlock Text="{Binding AttributeName}" Width="150" VerticalAlignment="Center" FontSize="12"/>
+								<TextBox Width="50" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="ValidationTextBox" TextChanged="textChangedEventHandler"/>
+								<TextBox Width="50" Height="25" Text="{Binding ComputedValue, UpdateSourceTrigger=PropertyChanged}" 
+                                         IsReadOnly="True" 
+                                         Background="LightGray" 
+                                         HorizontalAlignment="Center" Margin="5,0,0,0"/>
+								<Button x:Name="DiceButton" Width="25" Height="25" Background="White" BorderBrush="#d6d6d6" BorderThickness="1" Click="DiceButton_Click" HorizontalAlignment="Center" VerticalAlignment="Center">
+									<Button.Template>
+										<ControlTemplate TargetType="Button">
+											<Grid>
+												<Rectangle RadiusX="6" RadiusY="6" Fill="White" Stroke="#d6d6d6" StrokeThickness="1" />
+												<TextBlock x:Name="DiceFace" Text="🎲" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="NoWrap" />
+											</Grid>
+										</ControlTemplate>
+									</Button.Template>
+								</Button>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+
+			<StackPanel Orientation="Horizontal" Margin="0">
+				<TextBlock Text="Total Attributes:" Width="150" FontSize="12"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.TotalAttributesSum}" FontWeight="Bold"/>
+			</StackPanel>
+		</StackPanel>
+
+		<!-- Right Column: Computed Values -->
+		<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0">
+			<TextBlock Text="Character Stats" FontSize="14" FontWeight="Bold" Margin="0,0,0,10" TextAlignment="Center"/>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Health Points:" Width="120" FontSize="12"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.LebenspunkteMax}" FontWeight="Bold"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Exhaustion Points:" Width="120" FontSize="12"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.ErschoepfungspunkteMax}" FontWeight="Bold"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Movement:" Width="120" FontSize="12"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.Movement}" FontWeight="Bold"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<TextBlock Text="Mana:" Width="120" FontSize="12"/>
+				<TextBlock Text="{Binding CharacterToBeCreated.Mana}" FontWeight="Bold"/>
+			</StackPanel>
+		</StackPanel>
+
+		<!-- Bottom Row: Buttons -->
+		<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="175,354,0,0" Grid.RowSpan="2">
+			<Button Content="Submit" Width="80" Height="25" Click="Submit_Click" Margin="5"/>
+			<Button Content="Back" Width="80" Height="25" Click="Back_Click" Margin="5"/>
+
+		</StackPanel>
+	</Grid>
+</UserControl>

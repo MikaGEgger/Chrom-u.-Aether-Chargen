@@ -1,14 +1,15 @@
 using chargen.Character;
 using chargen.Character.Career;
 using chargen.Character.CharacterProperties;
+using System.Collections.ObjectModel;
 using System.Xml;
 
 namespace chargen.RulesetConstants
 {
     public class RulesetConstants
     {
-        private List<CharacterAttribute> characterAttributes;
-        public List<CharacterAttribute> CharacterAttributes
+        private ObservableCollection<CharacterAttribute> characterAttributes;
+        public ObservableCollection<CharacterAttribute> CharacterAttributes
         {
             get { return characterAttributes; }
         }
@@ -32,6 +33,15 @@ namespace chargen.RulesetConstants
             set { metaTypes = value; }
         }
 
+        private List<Archetype> archetypes;
+
+        public List<Archetype> Archetypes
+        {
+            get { return archetypes; }
+            set { archetypes = value; }
+        }
+
+
         private List<CharacterOrigin> characterOrigins;
         public List<CharacterOrigin> CharacterOrigins
         {
@@ -42,19 +52,61 @@ namespace chargen.RulesetConstants
 
         public RulesetConstants()
         {
-            characterAttributes = new List<CharacterAttribute>();
+            characterAttributes = new ObservableCollection<CharacterAttribute>();
             characterSkills = new List<CharacterSkill>();
             careers = new List<Career>();
             metaTypes = new List<Metatype>();
             characterOrigins = new List<CharacterOrigin>();
+            archetypes = new List<Archetype>();
 
             FillCharacterAttributes();
             FillCharacterSkills();
             FillCharacterCareers();
             FillMetaTypes();
             FillCharacterOrigins();
+            FillArchetypes();
         }
+        private void FillArchetypes()
+        {
+            string loc = AppContext.BaseDirectory + @"RulesetConstants\Data\Archetypes.xml";
+            using (XmlReader reader = XmlReader.Create(loc))
+            {
+                Archetype currentArchetype = null;
 
+                while (reader.Read())
+                {
+                    if (reader.IsStartElement())
+                    {
+                        switch (reader.Name)
+                        {
+                            case "Archetype":
+                                currentArchetype = new Archetype();
+                                break;
+                            case "Name":
+                                if (currentArchetype != null && reader.Read())
+                                    currentArchetype.Name = reader.Value;
+                                break;
+                            case "Description":
+                                if (currentArchetype != null && reader.Read())
+                                    currentArchetype.Description = reader.Value;
+                                break;
+                            case "Skills":
+                                if (currentArchetype != null && reader.Read())
+                                    currentArchetype.Skills = new List<string>(reader.Value.Split(','));
+                                break;
+                        }
+                    }
+                    else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Archetype")
+                    {
+                        if (currentArchetype != null)
+                        {
+                            archetypes.Add(currentArchetype);
+
+                        }
+                    }
+                }
+            }
+        }
 
         private void FillCharacterAttributes()
         {
@@ -110,22 +162,18 @@ namespace chargen.RulesetConstants
                 {
                     if (reader.IsStartElement())
                     {
-                        currentElement = reader.Name;
-
-                        if (reader.Name == "Skill" && currentSkill == null)
+                        switch (reader.Name)
                         {
-                            currentSkill = new CharacterSkill();
-                        }
-                    }
-                    else if (reader.NodeType == XmlNodeType.Text && currentSkill != null)
-                    {
-                        switch (currentElement)
-                        {
-                            case "SkillName":
-                                currentSkill.SkillName = reader.Value;
+                            case "Skill":
+                                currentSkill = new CharacterSkill();
                                 break;
-                            case "Specializations":
-                                currentSkill.Description = reader.Value;
+                            case "Name":
+                                if (currentSkill != null && reader.Read())
+                                    currentSkill.Name = reader.Value;
+                                break;
+                            case "Specialization":
+                                if (currentSkill != null && reader.Read())
+                                    currentSkill.Specializations.Add(reader.Value);
                                 break;
                         }
                     }
@@ -134,7 +182,6 @@ namespace chargen.RulesetConstants
                         if (currentSkill != null)
                         {
                             characterSkills.Add(currentSkill);
-
                         }
                     }
                 }
@@ -206,7 +253,7 @@ namespace chargen.RulesetConstants
             var splitskill = skills.Split(',');
             foreach (var skill in splitskill)
             {
-                skillList.Add(this.CharacterSkills.FirstOrDefault(x => x.SkillName == skill.Trim()));
+                skillList.Add(this.CharacterSkills.FirstOrDefault(x => x.Name == skill.Trim()));
             }
             return skillList;
         }
@@ -348,7 +395,12 @@ namespace chargen.RulesetConstants
             foreach (var item in items)
             {
                 CharacterAttribute characterAttribute = this.CharacterAttributes.FirstOrDefault(a => a.AttributeCode == item);
-                characterAttributes.Add(characterAttribute);
+                if (characterAttribute!=null)
+                {
+                    characterAttributes.Add(characterAttribute);
+                }
+                    
+
             }
             return characterAttributes;
         }
