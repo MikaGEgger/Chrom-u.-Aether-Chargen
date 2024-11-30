@@ -1,11 +1,16 @@
-using chargen.Character;
+﻿using chargen.Character;
 using chargen.Character.Career;
 using chargen.RulesetConstants;
 using Microsoft.VisualBasic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
+using System.Windows.Media;
 using System.Windows.Navigation;
+using System;
+using System.Collections.ObjectModel;
+using chargen.Character.CharacterProperties;
 
 namespace WpfApp.Views
 {
@@ -13,6 +18,9 @@ namespace WpfApp.Views
     {
         private MainWindow _mainWindow;
         public Character CharacterToBeCreated { get; set; }
+
+        private static readonly string[] DiceFaces = { "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣" };
+
 
         public List<Archetype> AvailableArchetypes { get
             {
@@ -32,14 +40,14 @@ namespace WpfApp.Views
             }
         }
 
-        public int LP => (GetAttributePoints("St�rke") + GetAttributePoints("Widerstand")) / 5;
+        public int LP => (GetAttributePoints("CharacterToBeCreateStärke") + GetAttributePoints("Widerstand")) / 5;
         public int EP => (GetAttributePoints("Willenskraft") + GetAttributePoints("Widerstand")) / 5;
 
         public int Bewegung
         {
             get
             {
-                int strength = GetAttributePoints("St�rke");
+                int strength = GetAttributePoints("Stärke");
                 int dexterity = GetAttributePoints("Geschicklichkeit");
                 int resistance = GetAttributePoints("Widerstand");
 
@@ -61,14 +69,80 @@ namespace WpfApp.Views
 
             // Load attributes and set data context
             CharacterToBeCreated = new Character();
-            CharacterToBeCreated.Attributes = rulesetConstants.CharacterAttributes;
+            CharacterToBeCreated.Attributess = new List<CharacterAttribute>(rulesetConstants.CharacterAttributes);
             
             DataContext = this;
         }
 
+        private void DiceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var random = new Random();
+            string[] diceFaces = { "⚀", "⚁", "⚂", "⚃", "⚄", "⚅" };
+
+            // Ensure the button has a RotateTransform for animation
+            var transform = ((Button)sender).RenderTransform as RotateTransform;
+            if (transform == null)
+            {
+                transform = new RotateTransform();
+                ((Button)sender).RenderTransform = transform;
+                ((Button)sender).RenderTransformOrigin = new Point(0.5, 0.5);
+            }
+
+            // Create the rotation animation
+            var animation = new DoubleAnimation(0, 360, TimeSpan.FromMilliseconds(500))
+            {
+                RepeatBehavior = new RepeatBehavior(3)
+            };
+
+            // Create a Storyboard
+            var storyboard = new Storyboard();
+            storyboard.Children.Add(animation);
+
+            // Link the animation to the RotateTransform's Angle property
+            Storyboard.SetTarget(animation, ((Button)sender));
+            Storyboard.SetTargetProperty(animation, new PropertyPath("(Button.RenderTransform).(RotateTransform.Angle)"));
+
+            // Update the dice face after animation completes
+            storyboard.Completed += (s, _) =>
+            {
+                // Find the StackPanel and TextBox
+                var stackPanel = (StackPanel)((Button)sender).Parent;
+                var textBox = stackPanel.Children.OfType<TextBox>().FirstOrDefault();
+
+                if (textBox != null)
+                {
+                    // Set the TextBox value to a random dice face
+                    RollValue(sender);
+                }
+            };
+
+            // Start the animation
+            storyboard.Begin();
+           
+        }
+
+        private void RollValue(object sender)
+        {
+            var stackPanel = (StackPanel)((Button)sender).Parent;
+
+            // Find the first TextBox in the StackPanel
+            var textBox = stackPanel.Children.OfType<TextBox>().FirstOrDefault();
+
+            if (textBox != null)
+            {  //3d10+20
+                int value = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    value += Random.Shared.Next(1, 11);
+                }
+                value += 20;
+                textBox.Text = value.ToString();
+            }
+        }
+
         private int GetAttributePoints(string attributeName)
         {
-            var value = CharacterToBeCreated.Attributes.FirstOrDefault(a => a.AttributeName == attributeName)?.Value ?? 0;
+            var value = CharacterToBeCreated.Attributess.FirstOrDefault(a => a.AttributeName == attributeName)?.Value ?? 0;
             return value;
         }
 
@@ -87,7 +161,7 @@ namespace WpfApp.Views
                 ((TextBox)sender).Text = j.ToString();
             }
             CharacterToBeCreated.CreateComputedElements();
-            CharacterToBeCreated.TotalAttributesSum=CharacterToBeCreated.Attributes.Sum(attr => attr.Value);
+            CharacterToBeCreated.TotalAttributesSum=CharacterToBeCreated.Attributess.Sum(attr => attr.Value);
         }
         private void ValidationTextBox(object sender, TextCompositionEventArgs e)
         {
@@ -102,7 +176,7 @@ namespace WpfApp.Views
         private void Submit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             // Process submitted data
-            MessageBox.Show($"Character '{CharacterToBeCreated.Name}' created with allocated points.", "Point Buy");
+            _mainWindow.LoadSkillSelectionView();
         }
 
         private void Back_Click(object sender, System.Windows.RoutedEventArgs e)

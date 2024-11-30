@@ -1,5 +1,7 @@
-using chargen.RulesetConstants;
+ using chargen.RulesetConstants;
+
 using System.Windows;
+using System.Windows.Media;
 using WpfApp.Views;
 
 namespace WpfApp
@@ -8,6 +10,7 @@ namespace WpfApp
     {
         public MainWindow()
         {
+            this.FontFamily = new FontFamily("Orbitron");
             RulesetConstants rulesetConstants = new RulesetConstants();
           
             InitializeComponent();
@@ -27,6 +30,11 @@ namespace WpfApp
         public void LoadPointBuyView()
         {
             MainContentArea.Content = new PointBuyView(this);
+        }
+
+        public void LoadSkillSelectionView()
+        {
+            MainContentArea.Content = new SkillSelectionView(this);
         }
     }
 }

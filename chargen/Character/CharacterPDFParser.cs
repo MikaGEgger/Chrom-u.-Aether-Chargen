@@ -58,7 +58,7 @@ namespace chargen.Character
                     
 
                     // Add rows of data
-                    foreach(CharacterAttribute attribute in character.Attributes)
+                    foreach(CharacterAttribute attribute in character.Attributess)
                         {
                         table.AddCell(new Cell().Add(new Paragraph(attribute.AttributeName))).SimulateBold();
                         table.AddCell(new Cell().Add(new Paragraph(attribute.Value.ToString())));

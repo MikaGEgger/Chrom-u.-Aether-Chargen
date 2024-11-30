@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using chargen.Character.Career;
@@ -9,7 +11,14 @@ namespace chargen.Character
     {
         public Character ()
         {
+            attributes = new List<CharacterAttribute> ();
+
+            
         }
+
+       
+
+       
 
         public Character(string? characterName, Metatype metatype, CharacterOrigin origin)
         {
@@ -35,8 +44,9 @@ namespace chargen.Character
                 {
                     totalAttributesSum = value;
                     OnPropertyChanged(nameof(TotalAttributesSum));
+                    
                 }
-                }
+            }
         }
 
 
@@ -98,25 +108,60 @@ namespace chargen.Character
         public int ErschoepfungspunkteCurrent { get; set; }
         #endregion
 
+        private List<CharacterAttribute> attributes ;
+
+        public List<CharacterAttribute> Attributess
+        {
+            get { return attributes; }
+            set { attributes = value; }
+        }
 
         public double Essence { get; set; }
         public Metatype Metatype { get => metatype; set
             {
                 metatype = value;
+                CalculateAttributeValues();
                 OnPropertyChanged(nameof(Metatype));
+            }
+        }
+
+        private void CalculateAttributeValues()
+        {
+            foreach (var attribute in Attributess)
+            {
+                attribute.CalculateComputedValue(Metatype, Origin);
             }
         }
 
         public double Prominence { get; set; }
         public double Finances { get; set; }
 
-        public CharacterOrigin Origin { get; set; }
+        private CharacterOrigin origin;
 
-        public Archetype Archetype{ get; set; }
+        public CharacterOrigin Origin
+        {
+            get { return origin; }
+            set { origin = value;
+                CalculateAttributeValues();
+            }
+        }
+
+
+        private Archetype archetype;
+
+        public Archetype Archetype
+        {
+            get { return archetype; }
+            set {
+                archetype = value;
+                OnPropertyChanged(nameof(Archetype));
+            }
+        }
+
 
         public string Name { get; set; }
 
-        public List<CharacterAttribute> Attributes { get; set; }
+      
 
         public List<CharacterSkill> Skills { get; set; }
 
@@ -139,10 +184,11 @@ namespace chargen.Character
             ErschoepfungspunkteCurrent =  ErschoepfungspunkteMax;
             Movement = CalculateMovement();
             Essence = CalculateEssence();
-            Mana= CalculateMana();
+            Mana = CalculateMana();
+            CalculateAttributeValues();
         }
 
-      
+
 
         private int CalculateMana()
         {
@@ -158,9 +204,9 @@ namespace chargen.Character
 
         private int CalculateMovement()
         {
-            int str=Attributes.FirstOrDefault(x=>x.AttributeCode=="STR").Value;
-            int ges=Attributes.FirstOrDefault(x=>x.AttributeCode=="GES").Value;
-            int wid=Attributes.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
+            int str=Attributess.FirstOrDefault(x=>x.AttributeCode=="STR").Value;
+            int ges= Attributess.FirstOrDefault(x=>x.AttributeCode=="GES").Value;
+            int wid= Attributess.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
             if(wid>str&&wid>ges)
             {
                 return 7;
@@ -175,16 +221,16 @@ namespace chargen.Character
         private int CalculateErschöpfungspunkte()
         {
             //(WIK+WID)/5
-            int wik=Attributes.FirstOrDefault(x=>x.AttributeCode=="WIK").Value;            
-            int wid=Attributes.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
+            int wik= Attributess.FirstOrDefault(x=>x.AttributeCode=="WIK").Value;            
+            int wid= Attributess.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
             return (wik+wid)/5;
         }
 
         private int CalculateLebensPunkte()
         {
             //(STR+WID)/5
-            int str=Attributes.FirstOrDefault(x=>x.AttributeCode=="STR").Value;            
-            int wid=Attributes.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
+            int str= Attributess.FirstOrDefault(x=>x.AttributeCode=="STR").Value;            
+            int wid= Attributess.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
             return (str+wid)/5;
         }
     }

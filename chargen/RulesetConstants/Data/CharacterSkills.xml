@@ -1,83 +1,165 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
 <Skills>
   <Skill>
-    <SkillName>Akrobatik</SkillName>
-    <Specializations>Abrollen, Entfesseln, Tanz</Specializations>
+    <Name>Akrobatik</Name>
+    <Specializations>
+      <Specialization>Abrollen</Specialization>
+      <Specialization>Entfesseln</Specialization>
+      <Specialization>Tanz</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Arkana</SkillName>
-    <Specializations>Äther erkennen, Aura lesen, Ätherkunde</Specializations>
+    <Name>Arkana</Name>
+    <Specializations>
+      <Specialization>Äther erkennen</Specialization>
+      <Specialization>Aura lesen</Specialization>
+      <Specialization>Ätherkunde</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Athletik</SkillName>
-    <Specializations>Klettern, Schwimmen</Specializations>
+    <Name>Athletik</Name>
+    <Specializations>
+      <Specialization>Klettern</Specialization>
+      <Specialization>Schwimmen</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Bodenfahrzeuge</SkillName>
-    <Specializations>Radfahrzeuge, Motorräder, Kettenfahrzeuge, Schweber</Specializations>
+    <Name>Bodenfahrzeuge</Name>
+    <Specializations>
+      <Specialization>Radfahrzeuge</Specialization>
+      <Specialization>Motorräder</Specialization>
+      <Specialization>Kettenfahrzeuge</Specialization>
+      <Specialization>Schweber</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Bürokratie</SkillName>
-    <Specializations>Archive durchsuchen, Investigation, Muster erkennen, Fälschen</Specializations>
+    <Name>Bürokratie</Name>
+    <Specializations>
+      <Specialization>Archive durchsuchen</Specialization>
+      <Specialization>Investigation</Specialization>
+      <Specialization>Muster erkennen</Specialization>
+      <Specialization>Fälschen</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Elektronik</SkillName>
-    <Specializations>Fernsteuerung, Hacking, Datenverarbeitung, Sicherheitstechnik</Specializations>
+    <Name>Elektronik</Name>
+    <Specializations>
+      <Specialization>Fernsteuerung</Specialization>
+      <Specialization>Hacking</Specialization>
+      <Specialization>Datenverarbeitung</Specialization>
+      <Specialization>Sicherheitstechnik</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Einschüchterung</SkillName>
-    <Specializations>Physisch, Psychisch, Folter</Specializations>
+    <Name>Einschüchterung</Name>
+    <Specializations>
+      <Specialization>Physisch</Specialization>
+      <Specialization>Psychisch</Specialization>
+      <Specialization>Folter</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Feldkunde</SkillName>
-    <Specializations>Botanik, Navigation, Spurenlesen, Überleben, Urbanes</Specializations>
+    <Name>Feldkunde</Name>
+    <Specializations>
+      <Specialization>Botanik</Specialization>
+      <Specialization>Navigation</Specialization>
+      <Specialization>Spurenlesen</Specialization>
+      <Specialization>Überleben</Specialization>
+      <Specialization>Urbanes</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Handwerk</SkillName>
-    <Specializations>je nach Berufen</Specializations>
+    <Name>Handwerk</Name>
+    <Specializations>
+      <Specialization>je nach Berufen</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Heimlichkeit</SkillName>
-    <Specializations>Taschendiebstahl, Fingerfertigkeit, Schleichen</Specializations>
+    <Name>Heimlichkeit</Name>
+    <Specializations>
+      <Specialization>Taschendiebstahl</Specialization>
+      <Specialization>Fingerfertigkeit</Specialization>
+      <Specialization>Schleichen</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Luftfahrzeuge</SkillName>
-    <Specializations>Rotor, Jet</Specializations>
+    <Name>Luftfahrzeuge</Name>
+    <Specializations>
+      <Specialization>Rotor</Specialization>
+      <Specialization>Jet</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Maschinenbau</SkillName>
-    <Specializations>Kybernetik, Mechanik, Robotik, Schlösser knacken</Specializations>
+    <Name>Maschinenbau</Name>
+    <Specializations>
+      <Specialization>Kybernetik</Specialization>
+      <Specialization>Mechanik</Specialization>
+      <Specialization>Robotik</Specialization>
+      <Specialization>Schlösser knacken</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Medizin</SkillName>
-    <Specializations>Erste Hilfe, Folgebehandlung, je nach Metatyp</Specializations>
+    <Name>Medizin</Name>
+    <Specializations>
+      <Specialization>Erste Hilfe</Specialization>
+      <Specialization>Folgebehandlung</Specialization>
+      <Specialization>je nach Metatyp</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Menschenkenntnis</SkillName>
-    <Specializations>Lügen erkennen, Psychologie</Specializations>
+    <Name>Menschenkenntnis</Name>
+    <Specializations>
+      <Specialization>Lügen erkennen</Specialization>
+      <Specialization>Psychologie</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Überreden</SkillName>
-    <Specializations>Feilschen, Führung, Verführung, Täuschung</Specializations>
+    <Name>Überreden</Name>
+    <Specializations>
+      <Specialization>Feilschen</Specialization>
+      <Specialization>Führung</Specialization>
+      <Specialization>Verführung</Specialization>
+      <Specialization>Täuschung</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Vorführung</SkillName>
-    <Specializations>Gesang, Instrument, Verkörperung, Verkleidung</Specializations>
+    <Name>Vorführung</Name>
+    <Specializations>
+      <Specialization>Gesang</Specialization>
+      <Specialization>Instrument</Specialization>
+      <Specialization>Verkörperung</Specialization>
+      <Specialization>Verkleidung</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Waffenfertigkeit (Art)</SkillName>
-    <Specializations>Extreme Entfernung, Salvenfeuer etc.</Specializations>
+    <Name>Waffenfertigkeit (Art)</Name>
+    <Specializations>
+      <Specialization>Extreme Entfernung</Specialization>
+      <Specialization>Salvenfeuer etc.</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Wahrnehmung</SkillName>
-    <Specializations>Sehen, Hören, Tasten, Riechen, Schmecken, Durchsuchen</Specializations>
+    <Name>Wahrnehmung</Name>
+    <Specializations>
+      <Specialization>Sehen</Specialization>
+      <Specialization>Hören</Specialization>
+      <Specialization>Tasten</Specialization>
+      <Specialization>Riechen</Specialization>
+      <Specialization>Schmecken</Specialization>
+      <Specialization>Durchsuchen</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Wasserfahrzeuge</SkillName>
-    <Specializations>Segelboote, Jetskis, Rennboote etc.</Specializations>
+    <Name>Wasserfahrzeuge</Name>
+    <Specializations>
+      <Specialization>Segelboote</Specialization>
+      <Specialization>Jetskis</Specialization>
+      <Specialization>Rennboote etc.</Specialization>
+    </Specializations>
   </Skill>
   <Skill>
-    <SkillName>Wissen / Fremdsprache (Art)</SkillName>
-    <Specializations>jeweiliges Spezialgebiet im ausgewählten Wissensbereich</Specializations>
+    <Name>Wissen / Fremdsprache (Art)</Name>
+    <Specializations>
+      <Specialization>jeweiliges Spezialgebiet im ausgewählten Wissensbereich</Specialization>
+    </Specializations>
   </Skill>
 </Skills>

@@ -18,14 +18,19 @@
 
 
   <ItemGroup>
+    <None Remove="android-chrome-512x512.png" />
+    <None Remove="favicon-32x32.png" />
     <None Remove="Logo.png" />
     <None Remove="Views\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="itext" Version="9.0.0" />
     <PackageReference Include="itext.bouncy-castle-adapter" Version="9.0.0" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="android-chrome-512x512.png" />
+    <Resource Include="favicon-32x32.png" />
     <Resource Include="Logo.png" />
     <Resource Include="Views\Logo.png" />
   </ItemGroup> 
