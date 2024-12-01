@@ -10,9 +10,9 @@ namespace chargen.Character
     public static class ConsoleCharacterGenerator
     {
         
-        public static Character CreateCharacter(RulesetConstants.RulesetConstants constants)
+        public static Character_ CreateCharacter(RulesetConstants.RulesetConstants constants)
         {           
-           Character charac = new Character();
+           Character_ charac = new Character_();
             Console.WriteLine("\n\r =================================================================\n\r\n\r\n\r\n\r");
             Console.WriteLine("Enter Character Name:");
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
@@ -147,9 +147,9 @@ namespace chargen.Character
             return metatype;
         }
 
-        internal static Character CreateRandomCharacter(RulesetConstants.RulesetConstants constants)
+        internal static Character_ CreateRandomCharacter(RulesetConstants.RulesetConstants constants)
         {
-           Character charac = new Character();
+           Character_ charac = new Character_();
             charac.Metatype = Random.Shared.GetItems(constants.MetaTypes.ToArray(), 1)[0];
             charac.Origin = Random.Shared.GetItems(constants.CharacterOrigins.ToArray(), 1)[0];
             charac.Attributess = new List<CharacterAttribute>(constants.CharacterAttributes);

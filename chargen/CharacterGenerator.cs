@@ -7,7 +7,7 @@ namespace WpfApp
     {
         public static void GenerateRandomCharacter(string name)
         {
-           Character c= ConsoleCharacterGenerator.CreateRandomCharacter(new chargen.RulesetConstants.RulesetConstants());
+           Character_ c= ConsoleCharacterGenerator.CreateRandomCharacter(new chargen.RulesetConstants.RulesetConstants());
             c.Name = name;
             CharacterPDFParser.ExportCharacter(c);
         }

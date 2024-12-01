@@ -6,11 +6,11 @@ namespace chargen.Character.CharacterProperties
     public class CharacterSkill : INotifyPropertyChanged
     {
         private string skillName;
-        private KnowledgeLevels _knowledgeLevel;
+        private KnowledgeLevel _knowledgeLevel;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public KnowledgeLevels KnowledgeLevel
+        public KnowledgeLevel CurrentLevel
         {
             get => _knowledgeLevel;
             set
@@ -18,7 +18,7 @@ namespace chargen.Character.CharacterProperties
                 if (_knowledgeLevel != value)
                 {
                     _knowledgeLevel = value;
-                    OnPropertyChanged(nameof(KnowledgeLevel));
+                    OnPropertyChanged(nameof(CurrentLevel));
                 }
             }
         }
@@ -29,7 +29,7 @@ namespace chargen.Character.CharacterProperties
 
         public CharacterSkill()
         {
-            KnowledgeLevel = KnowledgeLevels.Untrained;
+            CurrentLevel = KnowledgeLevel.Untrained;
             Specializations = new List<string>();
         }
 
@@ -39,7 +39,7 @@ namespace chargen.Character.CharacterProperties
             set { skillName = value; }
         }
 
-        public enum KnowledgeLevels
+        public enum KnowledgeLevel
         {
             Untrained, // Default
             Trained,
