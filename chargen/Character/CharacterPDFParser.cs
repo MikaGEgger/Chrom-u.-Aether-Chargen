@@ -12,7 +12,7 @@ namespace chargen.Character
 {
     public class CharacterPDFParser
     {
-        public static void ExportCharacter(Character character)
+        public static void ExportCharacter(Character_ character)
         {
              string outputPdfPath = character.Name+".pdf";
 
@@ -40,7 +40,7 @@ namespace chargen.Character
             }
         }
 
-        static void AddCharacterAttributes(Document document, string filePath, Character character)
+        static void AddCharacterAttributes(Document document, string filePath, Character_ character)
         {
             // Add a section header for the file
             document.Add(new Paragraph($"--- {character.Metatype} ---")

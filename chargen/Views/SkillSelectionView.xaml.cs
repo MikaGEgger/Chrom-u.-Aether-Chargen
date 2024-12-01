@@ -1,10 +1,13 @@
-﻿using chargen.Character.CharacterProperties;
+﻿using chargen.Character;
+using chargen.Character.Career;
+using chargen.Character.CharacterProperties;
 using chargen.RulesetConstants;
-using GalaSoft.MvvmLight.Command;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using static chargen.Character.CharacterProperties.CharacterSkill;
 
 namespace WpfApp.Views
 {
@@ -12,33 +15,52 @@ namespace WpfApp.Views
     {
         private MainWindow _mainWindow;
 
-        RulesetConstants rulesetConstants;
+        public Archetype SelectedArchetype { get; }
 
-        public ObservableCollection<CharacterSkill> AvailableSkills { get; set; }
+        private Character_ CharacterToBeCreated;
+        public string TrainedSkill1 { get; set; }
+        public string TrainedSkill2 { get; set; }
 
-        public SkillSelectionView(MainWindow mainWindow)
+        public ObservableCollection<string> AvailableSkillsForDropdown2 =>
+            new ObservableCollection<string>(
+                SelectedArchetype.Skills.Where(skill => skill != TrainedSkill1));
+
+        public SkillSelectionView(MainWindow mainWindow, Character_ character)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            rulesetConstants = new RulesetConstants();
 
-            // Example skills (replace with actual data)
-            AvailableSkills = new ObservableCollection<CharacterSkill>(rulesetConstants.CharacterSkills);
-            
+            SelectedArchetype = character.Archetype;
+            CharacterToBeCreated = character;
 
-            // Attach command to add specializations
-          
-
+            // Initialize data context
             DataContext = this;
         }
 
-        private void Back_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.LoadPointBuyView();
+            // Logic for going back
         }
 
-        private void Confirm_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Confirm_Click(object sender, RoutedEventArgs e)
         {
+            if (TrainedSkill1 == null || TrainedSkill2 == null)
+            {
+                MessageBox.Show("Please select two skills to train.");
+                return;
+            }
+
+            if (TrainedSkill1 == TrainedSkill2)
+            {
+                MessageBox.Show("Skill 1 and Skill 2 cannot be the same.");
+                return;
+            }
+            
+            CharacterToBeCreated.Skills.FirstOrDefault(x => x.Name.Equals(TrainedSkill1)).CurrentLevel = KnowledgeLevel.Trained;
+            CharacterToBeCreated.Skills.FirstOrDefault(x => x.Name.Equals(TrainedSkill2)).CurrentLevel = KnowledgeLevel.Trained;
+
+            // Proceed with confirmation logic
+            _mainWindow.LoadSkillUpgradeView(CharacterToBeCreated);
         }
     }
-}
+    }

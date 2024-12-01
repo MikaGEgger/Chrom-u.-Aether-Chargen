@@ -1,5 +1,7 @@
- using chargen.RulesetConstants;
-
+using chargen.Character;
+using chargen.Character.Career;
+using chargen.RulesetConstants;
+using chargen.Views;
 using System.Windows;
 using System.Windows.Media;
 using WpfApp.Views;
@@ -32,9 +34,18 @@ namespace WpfApp
             MainContentArea.Content = new PointBuyView(this);
         }
 
-        public void LoadSkillSelectionView()
+        public void LoadSkillSelectionView(Character_ character)
         {
-            MainContentArea.Content = new SkillSelectionView(this);
+            MainContentArea.Content = new SkillSelectionView(this, character);
+        }
+        public void LoadSkillUpgradeView(Character_ character)
+        {
+            MainContentArea.Content = new SkillUpgradeView(this, character);
+        }
+
+        internal void LoadCarreerView(Character_ character)
+        {
+            MainContentArea.Content = new WpfApp.Views.CarreerView(this, character);
         }
     }
 }

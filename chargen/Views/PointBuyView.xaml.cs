@@ -17,7 +17,7 @@ namespace WpfApp.Views
     public partial class PointBuyView : UserControl
     {
         private MainWindow _mainWindow;
-        public Character CharacterToBeCreated { get; set; }
+        public Character_ CharacterToBeCreated { get; set; }
 
         private static readonly string[] DiceFaces = { "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣" };
 
@@ -68,9 +68,9 @@ namespace WpfApp.Views
             _mainWindow = mainWindow;
 
             // Load attributes and set data context
-            CharacterToBeCreated = new Character();
+            CharacterToBeCreated = new Character_();
             CharacterToBeCreated.Attributess = new List<CharacterAttribute>(rulesetConstants.CharacterAttributes);
-            
+            CharacterToBeCreated.Skills = new List<CharacterSkill>(rulesetConstants.CharacterSkills);
             DataContext = this;
         }
 
@@ -176,7 +176,10 @@ namespace WpfApp.Views
         private void Submit_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             // Process submitted data
-            _mainWindow.LoadSkillSelectionView();
+            if (CharacterToBeCreated.Archetype != null)
+            {
+                _mainWindow.LoadSkillSelectionView(CharacterToBeCreated);
+            }
         }
 
         private void Back_Click(object sender, System.Windows.RoutedEventArgs e)

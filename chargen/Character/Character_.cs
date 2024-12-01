@@ -7,9 +7,9 @@ using chargen.Character.CharacterProperties;
 
 namespace chargen.Character
 {
-    public class Character : INotifyPropertyChanged 
+    public class Character_ : INotifyPropertyChanged 
     {
-        public Character ()
+        public Character_ ()
         {
             attributes = new List<CharacterAttribute> ();
 
@@ -20,7 +20,7 @@ namespace chargen.Character
 
        
 
-        public Character(string? characterName, Metatype metatype, CharacterOrigin origin)
+        public Character_(string characterName, Metatype metatype, CharacterOrigin origin)
         {
             Name = characterName;
             Metatype = metatype;

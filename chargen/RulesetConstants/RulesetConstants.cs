@@ -92,7 +92,11 @@ namespace chargen.RulesetConstants
                                 break;
                             case "Skills":
                                 if (currentArchetype != null && reader.Read())
+                                {
                                     currentArchetype.Skills = new List<string>(reader.Value.Split(','));
+                                    currentArchetype.Skills = currentArchetype.Skills.Select(x => x.Trim()).ToList();
+                                    currentArchetype.Skills.ForEach(x => x.Trim());
+                                }
                                 break;
                         }
                     }
@@ -169,7 +173,7 @@ namespace chargen.RulesetConstants
                                 break;
                             case "Name":
                                 if (currentSkill != null && reader.Read())
-                                    currentSkill.Name = reader.Value;
+                                    currentSkill.Name = reader.Value.Trim();
                                 break;
                             case "Specialization":
                                 if (currentSkill != null && reader.Read())
