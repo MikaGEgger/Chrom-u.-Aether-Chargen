@@ -104,7 +104,7 @@ namespace WpfApp.Views
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            // Logic to navigate back
+            _mainWindow.LoadSkillSelectionView(_characterToBeCreated);
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
@@ -117,7 +117,7 @@ namespace WpfApp.Views
 
             // Proceed with confirmation
             var updatedSkills = existingSkills.Where(skill => skill.CurrentLevel != KnowledgeLevel.Untrained);
-           
+          
             _mainWindow.LoadCarreerView(_characterToBeCreated);
 
         }

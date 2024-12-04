@@ -39,7 +39,8 @@ namespace WpfApp.Views
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            // Logic for going back
+            _mainWindow.LoadSkillUpgradeView(CharacterToBeCreated);
+
         }
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
