@@ -147,6 +147,7 @@ namespace chargen.Character
             return metatype;
         }
 
+        //ToDo: Remove this from here
         internal static CaAeCharacter CreateRandomCharacter(RulesetConstants.RulesetConstants constants)
         {
            CaAeCharacter charac = new CaAeCharacter();

@@ -2,7 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Character Generation"
-		SizeToContent="WidthAndHeight" Icon="/favicon-32x32.png">
+		SizeToContent="WidthAndHeight" Icon="/favicon-32x32.png" FontFamily="OCR A Extended">
+	
+	
 	<Grid>
 		<StackPanel Orientation="Horizontal" Height="50" Background="#CCC" VerticalAlignment="Top">
 			<Image Source="/android-chrome-512x512.png" HorizontalAlignment="Right"   />

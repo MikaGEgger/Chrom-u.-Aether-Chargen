@@ -1,12 +1,17 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using chargen.Character.CharacterProperties;
+using iText.IO.Font;
+using iText.Kernel.Colors;
+using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using static chargen.Character.CharacterProperties.CharacterSkill;
 
 namespace chargen.Character
 {
@@ -21,6 +26,10 @@ namespace chargen.Character
                 using (PdfDocument pdf = new PdfDocument(writer))
                 {
                     Document document = new Document(pdf);
+                    string fontPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"orbitron", "orbitron-medium.otf");
+                    PdfFont ocrFont = PdfFontFactory.CreateFont(fontPath);
+                   
+                    document.SetFont(ocrFont);
 
                     // Add title to the PDF
                     document.Add(new Paragraph(character.Name)
@@ -83,25 +92,55 @@ namespace chargen.Character
         private static void AddCharacterSkills(Document document, CaAeCharacter character)
         {
             document.Add(new Paragraph("Skills")
-                .SetFontSize(16)
-                .SimulateBold()
-                .SetMarginTop(15)
-                .SetMarginBottom(10));
+         .SetFontSize(16)
+         .SimulateBold()
+         .SetMarginTop(15)
+         .SetMarginBottom(10));
 
-            Table table = new Table(UnitValue.CreatePercentArray(new float[] { 3, 2, 5 }))
+            // Define table with 4 columns: Skill Name, Trained, Advanced, Expert
+            Table table = new Table(UnitValue.CreatePercentArray(new float[] { 4, 2, 2, 2 }))
                 .UseAllAvailableWidth();
 
             // Add header row
             table.AddHeaderCell(new Cell().Add(new Paragraph("Skill").SimulateBold()));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("Level").SimulateBold()));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("Specializations").SimulateBold()));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Trained").SimulateBold()));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Advanced").SimulateBold()));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Expert").SimulateBold()));
 
-            // Add rows of data
+            // Add rows for skills
             foreach (CharacterSkill skill in character.Skills)
-            {
+            {         
+
+                // Add the skill name
                 table.AddCell(new Cell().Add(new Paragraph(skill.Name)));
-                table.AddCell(new Cell().Add(new Paragraph(skill.CurrentLevel.ToString())));
-                table.AddCell(new Cell().Add(new Paragraph(string.Join(", ", skill.Specializations))));
+
+                // Prepare cells for Trained, Advanced, and Expert
+                Cell trainedCell = new Cell();
+                Cell advancedCell = new Cell();
+                Cell expertCell = new Cell();
+
+                // Use a switch statement to set the background color
+                switch (skill.CurrentLevel)
+                {
+                    case KnowledgeLevel.Trained:
+                        trainedCell.SetBackgroundColor(new DeviceRgb(0, 236, 0));
+                        break;
+                    case KnowledgeLevel.Advanced:
+                        advancedCell.SetBackgroundColor(new DeviceRgb(0, 236, 0));
+                        break;
+                    case KnowledgeLevel.Expert:
+                        expertCell.SetBackgroundColor(new DeviceRgb(0, 236, 0));
+                        break;
+                    default:
+                        // Leave cells with default background for untrained or unknown levels
+                        break;
+                }
+
+                // Add the cells to the table
+                table.AddCell(trainedCell);
+                table.AddCell(advancedCell);
+                table.AddCell(expertCell);                
+
             }
 
             // Add the table to the document
