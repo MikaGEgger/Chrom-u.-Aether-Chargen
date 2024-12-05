@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using static chargen.Character.CharacterProperties.CharacterSkill;
 
-namespace WpfApp.Views
+namespace CharGen.Views
 {
     public partial class SkillUpgradeView : UserControl
     {

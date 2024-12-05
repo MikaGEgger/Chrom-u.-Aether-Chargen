@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using static chargen.Character.CharacterProperties.CharacterSkill;
 
-namespace WpfApp.Views
+namespace CharGen.Views
 {
     public partial class SkillSelectionView : UserControl
     {
@@ -39,7 +39,7 @@ namespace WpfApp.Views
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.LoadSkillUpgradeView(CharacterToBeCreated);
+            _mainWindow.LoadPointBuyView(CharacterToBeCreated);
 
         }
 

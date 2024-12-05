@@ -143,6 +143,7 @@ namespace chargen.Character
             get { return origin; }
             set { origin = value;
                 CalculateAttributeValues();
+                OnPropertyChanged(nameof(Origin));
             }
         }
 

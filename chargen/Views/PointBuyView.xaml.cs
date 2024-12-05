@@ -12,7 +12,7 @@ using System;
 using System.Collections.ObjectModel;
 using chargen.Character.CharacterProperties;
 
-namespace WpfApp.Views
+namespace CharGen.Views
 {
     public partial class PointBuyView : UserControl
     {
@@ -61,6 +61,8 @@ namespace WpfApp.Views
         }
 
         RulesetConstants rulesetConstants;
+       
+
         public PointBuyView(MainWindow mainWindow)
         {
              rulesetConstants = new chargen.RulesetConstants.RulesetConstants();
@@ -72,6 +74,11 @@ namespace WpfApp.Views
             CharacterToBeCreated.Attributess = new List<CharacterAttribute>(rulesetConstants.CharacterAttributes);
             CharacterToBeCreated.Skills = new List<CharacterSkill>(rulesetConstants.CharacterSkills);
             DataContext = this;
+        }
+
+        public PointBuyView(MainWindow mainWindow, Character_ character) : this(mainWindow)
+        {
+            CharacterToBeCreated = character;
         }
 
         private void DiceButton_Click(object sender, RoutedEventArgs e)

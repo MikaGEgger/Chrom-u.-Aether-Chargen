@@ -1,7 +1,7 @@
 using chargen.Character;
 using System.Windows;
 
-namespace WpfApp
+namespace CharGen
 {
     public static class CharacterGenerator
     {
