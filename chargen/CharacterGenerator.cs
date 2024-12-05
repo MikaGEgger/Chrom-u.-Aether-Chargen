@@ -7,7 +7,7 @@ namespace CharGen
     {
         public static void GenerateRandomCharacter(string name)
         {
-           Character_ c= ConsoleCharacterGenerator.CreateRandomCharacter(new chargen.RulesetConstants.RulesetConstants());
+           CaAeCharacter c= ConsoleCharacterGenerator.CreateRandomCharacter(new chargen.RulesetConstants.RulesetConstants());
             c.Name = name;
             CharacterPDFParser.ExportCharacter(c);
         }

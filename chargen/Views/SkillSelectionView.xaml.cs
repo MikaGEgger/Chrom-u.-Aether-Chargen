@@ -17,7 +17,7 @@ namespace CharGen.Views
 
         public Archetype SelectedArchetype { get; }
 
-        private Character_ CharacterToBeCreated;
+        private CaAeCharacter CharacterToBeCreated;
         public string TrainedSkill1 { get; set; }
         public string TrainedSkill2 { get; set; }
 
@@ -25,7 +25,7 @@ namespace CharGen.Views
             new ObservableCollection<string>(
                 SelectedArchetype.Skills.Where(skill => skill != TrainedSkill1));
 
-        public SkillSelectionView(MainWindow mainWindow, Character_ character)
+        public SkillSelectionView(MainWindow mainWindow, CaAeCharacter character)
         {
             InitializeComponent();
             _mainWindow = mainWindow;

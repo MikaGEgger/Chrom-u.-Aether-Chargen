@@ -14,7 +14,7 @@ namespace CharGen.Views
     {
         private const int MaxSkillIncreases = 2;
         private int _currentSkillIncreaseCount = 0;
-        private Character_ _characterToBeCreated;
+        private CaAeCharacter _characterToBeCreated;
         private MainWindow _mainWindow;
 
         public List<CharacterSkill> skills { get; set; }
@@ -26,7 +26,7 @@ namespace CharGen.Views
        
        
 
-        public SkillUpgradeView(MainWindow mainWindow, Character_ characterToBeCreated)
+        public SkillUpgradeView(MainWindow mainWindow, CaAeCharacter characterToBeCreated)
         {
             InitializeComponent();
             skills=SetExistingSkills(characterToBeCreated);
@@ -37,7 +37,7 @@ namespace CharGen.Views
             DataContext = this;
         }
 
-        private List<CharacterSkill>? SetExistingSkills(Character_ characterToBeCreated)
+        private List<CharacterSkill>? SetExistingSkills(CaAeCharacter characterToBeCreated)
         {
            var existint = new ObservableCollection<CharacterSkill>();
             foreach (var skill in characterToBeCreated.Skills)

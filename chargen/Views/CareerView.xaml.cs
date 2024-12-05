@@ -14,12 +14,11 @@ namespace CharGen.Views
     public partial class CareerView : UserControl, INotifyPropertyChanged
     {
         private MainWindow _mainWindow;
-        private Character_ _characterToBeCreated;
+        private CaAeCharacter _characterToBeCreated;
 
         private ObservableCollection<Career> _careers;
         private Career _selectedCareer;
         private int _completedTerms;
-        private int _currentAge;
         private int _lastRoll;
         private int _degreesOfFailure;
         private string _lastRollOutcome;
@@ -58,10 +57,10 @@ namespace CharGen.Views
 
         public int CurrentAge
         {
-            get => _currentAge;
+            get => _characterToBeCreated.Age;
             set
             {
-                _currentAge = value;
+                _characterToBeCreated.Age = value;
                 OnPropertyChanged(nameof(CurrentAge));
             }
         }
@@ -116,7 +115,7 @@ namespace CharGen.Views
             }
         }
 
-        public CareerView(MainWindow mainWindow, Character_ characterToBeCreated)
+        public CareerView(MainWindow mainWindow, CaAeCharacter characterToBeCreated)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
@@ -152,14 +151,16 @@ namespace CharGen.Views
             var random = new Random();
             LastRoll = random.Next(1, 101);
             var attributeValue = 0;
-            if(SelectedCareer.CheckAttribute==null)
+            
+            if (SelectedCareer.CheckAttribute==null)
             {
-                attributeValue = _characterToBeCreated.Attributess.Max(x => x.Value);
+                attributeValue = _characterToBeCreated.Attributess.Max(x => x.ComputedValue);
+                SelectedCareer.CheckAttribute = _characterToBeCreated.Attributess.FirstOrDefault(x => x.ComputedValue == attributeValue);
             }
             else {
                 var attributeToCheck = _characterToBeCreated.Attributess.FirstOrDefault(x => x.AttributeCode.Equals(SelectedCareer.CheckAttribute.AttributeCode));
 
-                attributeValue = attributeToCheck.Value;
+                attributeValue = attributeToCheck.ComputedValue;
            
             }
 
@@ -167,9 +168,12 @@ namespace CharGen.Views
 
             if (LastRoll > attributeValue)
             {
+                
                 if (DegreesOfFailure > 2)
                 {
                     int penalty = RollPenalty(2);
+                    _characterToBeCreated.Attributess.FirstOrDefault(x => x.AttributeCode.Equals(SelectedCareer.CheckAttribute.AttributeCode)).Value -= penalty;
+                    _characterToBeCreated.Attributess.FirstOrDefault(x => x.AttributeCode.Equals(SelectedCareer.CheckAttribute.AttributeCode)).ComputedValue -= penalty;
                     LastRollOutcome = $"Career ends after {RollYears()} years! Lost {penalty}% attribute.";
                     CanAddTerm = false;
                     CanSelectCareer = false;
@@ -177,7 +181,11 @@ namespace CharGen.Views
                 else
                 {
                     int penalty = RollPenalty(1);
+                    _characterToBeCreated.Attributess.FirstOrDefault(x => x.AttributeCode.Equals(SelectedCareer.CheckAttribute.AttributeCode)).Value -= penalty;
+                    _characterToBeCreated.Attributess.FirstOrDefault(x => x.AttributeCode.Equals(SelectedCareer.CheckAttribute.AttributeCode)).ComputedValue -= penalty;
+
                     LastRollOutcome = $"Minor setback: Lost {penalty}% attribute.";
+
                 }
             }
             else
@@ -205,12 +213,12 @@ namespace CharGen.Views
 
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Career details submitted successfully.");
+            CharacterPDFParser.ExportCharacter(_characterToBeCreated);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Navigating back to the previous screen.");
+            _mainWindow.LoadSkillUpgradeView(_characterToBeCreated);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -7,20 +7,18 @@ using chargen.Character.CharacterProperties;
 
 namespace chargen.Character
 {
-    public class Character_ : INotifyPropertyChanged 
+    public class CaAeCharacter : INotifyPropertyChanged 
     {
-        public Character_ ()
+        public CaAeCharacter ()
         {
-            attributes = new List<CharacterAttribute> ();
-
-            
+            attributes = new List<CharacterAttribute> ();            
         }
 
        
 
        
 
-        public Character_(string characterName, Metatype metatype, CharacterOrigin origin)
+        public CaAeCharacter(string characterName, Metatype metatype, CharacterOrigin origin)
         {
             Name = characterName;
             Metatype = metatype;
@@ -35,6 +33,15 @@ namespace chargen.Character
 
         private int totalAttributesSum=0;
         private Metatype metatype;
+
+        private int age=18;
+
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+
 
         public int TotalAttributesSum
         {

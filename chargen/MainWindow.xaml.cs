@@ -34,21 +34,21 @@ namespace CharGen
             MainContentArea.Content = new PointBuyView(this);
         }
 
-        public void LoadSkillSelectionView(Character_ character)
+        public void LoadSkillSelectionView(CaAeCharacter character)
         {
             MainContentArea.Content = new SkillSelectionView(this, character);
         }
-        public void LoadSkillUpgradeView(Character_ character)
+        public void LoadSkillUpgradeView(CaAeCharacter character)
         {
             MainContentArea.Content = new SkillUpgradeView(this, character);
         }
 
-        internal void LoadCarreerView(Character_ character)
+        internal void LoadCarreerView(CaAeCharacter character)
         {
             MainContentArea.Content = new CareerView(this, character);
         }
 
-        internal void LoadPointBuyView(Character_ character)
+        internal void LoadPointBuyView(CaAeCharacter character)
         {
             MainContentArea.Content = new PointBuyView(this, character);
         }
