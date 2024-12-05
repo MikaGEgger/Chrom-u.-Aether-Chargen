@@ -11,28 +11,117 @@ using CharGen;
 
 namespace CharGen.Views
 {
-    public partial class CareerView : UserControl
+    public partial class CareerView : UserControl, INotifyPropertyChanged
     {
         private MainWindow _mainWindow;
         private Character_ _characterToBeCreated;
 
-        public ObservableCollection<Career> Careers { get; set; }
-        public Career SelectedCareer { get; set; }
-        public int CompletedTerms { get; private set; }
-        public int CurrentAge { get; private set; }
-        public int LastRoll { get; private set; }
-        public int DegreesOfFailure { get; private set; }
-        public string LastRollOutcome { get; private set; }
-        public bool CanAddTerm { get; private set; } = true;
-        public bool CanSelectCareer { get; private set; } = true;
-        public bool CanUseFatePoint { get; private set; } = false;
+        private ObservableCollection<Career> _careers;
+        private Career _selectedCareer;
+        private int _completedTerms;
+        private int _currentAge;
+        private int _lastRoll;
+        private int _degreesOfFailure;
+        private string _lastRollOutcome;
+        private bool _canAddTerm = true;
+        private bool _canSelectCareer = true;
+
+        public ObservableCollection<Career> Careers
+        {
+            get => _careers;
+            set
+            {
+                _careers = value;
+                OnPropertyChanged(nameof(Careers));
+            }
+        }
+
+        public Career SelectedCareer
+        {
+            get => _selectedCareer;
+            set
+            {
+                _selectedCareer = value;
+                OnPropertyChanged(nameof(SelectedCareer));
+            }
+        }
+
+        public int CompletedTerms
+        {
+            get => _completedTerms;
+            set
+            {
+                _completedTerms = value;
+                OnPropertyChanged(nameof(CompletedTerms));
+            }
+        }
+
+        public int CurrentAge
+        {
+            get => _currentAge;
+            set
+            {
+                _currentAge = value;
+                OnPropertyChanged(nameof(CurrentAge));
+            }
+        }
+
+        public int LastRoll
+        {
+            get => _lastRoll;
+            set
+            {
+                _lastRoll = value;
+                OnPropertyChanged(nameof(LastRoll));
+            }
+        }
+
+        public int DegreesOfFailure
+        {
+            get => _degreesOfFailure;
+            set
+            {
+                _degreesOfFailure = value;
+                OnPropertyChanged(nameof(DegreesOfFailure));
+            }
+        }
+
+        public string LastRollOutcome
+        {
+            get => _lastRollOutcome;
+            set
+            {
+                _lastRollOutcome = value;
+                OnPropertyChanged(nameof(LastRollOutcome));
+            }
+        }
+
+        public bool CanAddTerm
+        {
+            get => _canAddTerm;
+            set
+            {
+                _canAddTerm = value;
+                OnPropertyChanged(nameof(CanAddTerm));
+            }
+        }
+
+        public bool CanSelectCareer
+        {
+            get => _canSelectCareer;
+            set
+            {
+                _canSelectCareer = value;
+                OnPropertyChanged(nameof(CanSelectCareer));
+            }
+        }
 
         public CareerView(MainWindow mainWindow, Character_ characterToBeCreated)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
             _characterToBeCreated = characterToBeCreated;
-           
+
             DataContext = this;
 
             // Initialize properties
@@ -42,24 +131,39 @@ namespace CharGen.Views
 
         private ObservableCollection<Career> LoadCareers()
         {
-            var rulesetConstants = new chargen.RulesetConstants.RulesetConstants();
-            return new ObservableCollection<Career>(rulesetConstants.Careers);
+            var constants = new RulesetConstants();
+            return new ObservableCollection<Career>(constants.Careers);
         }
 
-        private void AddTerm_Click(object sender, RoutedEventArgs e)
+        private void AddTermAndRollRisk_Click(object sender, RoutedEventArgs e)
         {
+            // Check if a career is selected
+            if (SelectedCareer == null)
+            {
+                MessageBox.Show("Please select a career first.");
+                return;
+            }
+
+            // Add Term: Increment age and completed terms
             CompletedTerms++;
             CurrentAge += 5;
-            CanAddTerm = true;
-            UpdateUI();
-        }
 
-        private void RollRisk_Click(object sender, RoutedEventArgs e)
-        {
+            // Roll Risk
             var random = new Random();
             LastRoll = random.Next(1, 101);
-            var attributeValue = SelectedCareer.CheckAttribute.Value;
-            DegreesOfFailure = Math.Abs(LastRoll / 10 - attributeValue / 10);
+            var attributeValue = 0;
+            if(SelectedCareer.CheckAttribute==null)
+            {
+                attributeValue = _characterToBeCreated.Attributess.Max(x => x.Value);
+            }
+            else {
+                var attributeToCheck = _characterToBeCreated.Attributess.FirstOrDefault(x => x.AttributeCode.Equals(SelectedCareer.CheckAttribute.AttributeCode));
+
+                attributeValue = attributeToCheck.Value;
+           
+            }
+
+            DegreesOfFailure = LastRoll / 10 - attributeValue / 10;
 
             if (LastRoll > attributeValue)
             {
@@ -80,23 +184,6 @@ namespace CharGen.Views
             {
                 LastRollOutcome = "No incident.";
             }
-
-            UpdateUI();
-        }
-
-        private void UseFatePoint_Click(object sender, RoutedEventArgs e)
-        {
-            RollRisk_Click(sender, e);
-        }
-
-        private void Submit_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Career details submitted successfully.");
-        }
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            _mainWindow.LoadSkillUpgradeView(_characterToBeCreated);
         }
 
         private int RollPenalty(int multiplier)
@@ -116,16 +203,14 @@ namespace CharGen.Views
             return random.Next(1, 6); // Random value 1d5
         }
 
-        private void UpdateUI()
+        private void Submit_Click(object sender, RoutedEventArgs e)
         {
-            OnPropertyChanged(nameof(CompletedTerms));
-            OnPropertyChanged(nameof(CurrentAge));
-            OnPropertyChanged(nameof(LastRoll));
-            OnPropertyChanged(nameof(DegreesOfFailure));
-            OnPropertyChanged(nameof(LastRollOutcome));
-            OnPropertyChanged(nameof(CanAddTerm));
-            OnPropertyChanged(nameof(CanSelectCareer));
-            OnPropertyChanged(nameof(SelectedCareer));
+            MessageBox.Show("Career details submitted successfully.");
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Navigating back to the previous screen.");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
