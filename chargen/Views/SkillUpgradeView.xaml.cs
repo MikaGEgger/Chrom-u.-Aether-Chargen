@@ -89,16 +89,24 @@ namespace CharGen.Views
                     }
                 }
             }
-          
 
+            var modifiedSkill = (sender as RadioButton)?.DataContext as CharacterSkill;
             if (_currentSkillIncreaseCount > MaxSkillIncreases)
             {
                 MessageBox.Show("You can only increase 2 skills.");
                 // Revert selection
-                var selectedSkill = (sender as RadioButton)?.DataContext as CharacterSkill;
-                selectedSkill.CurrentLevel = existingSkills.First(s => s.Name == selectedSkill.Name).CurrentLevel;
+
+                modifiedSkill.CurrentLevel = existingSkills.First(s => s.Name == modifiedSkill.Name).CurrentLevel;
 
 
+            }
+            else
+            {
+                SkillIncreaseCount = _currentSkillIncreaseCount;
+                _characterToBeCreated.Skills.FirstOrDefault(x=>x.Name.Equals(modifiedSkill.Name)).CurrentLevel = modifiedSkill.CurrentLevel;
+                OnPropertyChanged(nameof(SkillIncreaseCount));
+                OnPropertyChanged(nameof(CanModifyKnowledgeLevel));
+                OnPropertyChanged(nameof(ShowValidationMessage));
             }
         }
 
