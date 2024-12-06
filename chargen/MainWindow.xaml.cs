@@ -36,6 +36,7 @@ namespace CharGen
 
             InitializeComponent();
             LoadPointBuyView();
+            DataContext = this;
         }
 
         public void LoadInitialView()

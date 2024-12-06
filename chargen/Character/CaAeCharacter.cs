@@ -187,7 +187,8 @@ namespace chargen.Character
 
         public override string ToString()
         {
-            return "Name: " + Name + " Metatype: " + Metatype.ToString();
+            var metatype = Metatype == null ? "None" : Metatype.Name;
+            return "Name: " + Name + " Metatype: " + metatype;
         }
 
         public void CreateComputedElements()
