@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using chargen.Character.CharacterProperties;
 using iText.IO.Font;
+using iText.IO.Image;
 using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using iText.Layout;
+using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using static chargen.Character.CharacterProperties.CharacterSkill;
@@ -26,42 +28,79 @@ namespace chargen.Character
                 using (PdfDocument pdf = new PdfDocument(writer))
                 {
                     Document document = new Document(pdf);
-                    string fontPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"orbitron", "orbitron-medium.otf");
+                    string fontPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "orbitron", "orbitron-medium.otf");
+                    string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HealthStatus.png");
                     PdfFont ocrFont = PdfFontFactory.CreateFont(fontPath);
-                   
                     document.SetFont(ocrFont);
 
-                    // Add title to the PDF
-                    document.Add(new Paragraph(character.Name)
-                        .SetFontSize(24)
-                        .SimulateBold()
-                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
-                        .SetMarginBottom(20));
-
-                    // Add basic character details
-                    document.Add(new Paragraph($"Metatype: {character.Metatype}")
-                        .SetFontSize(12)
-                        .SetMarginBottom(5));
-                    document.Add(new Paragraph($"Archetype: {character.Archetype}")
-                        .SetFontSize(12)
-                        .SetMarginBottom(10));
+                    AddHeader(character, document, imagePath);
 
                     // Add attributes
                     AddCharacterAttributes(document, character);
+                    InsertPageBreak(document);
+
 
                     // Add skills
                     AddCharacterSkills(document, character);
+                    InsertPageBreak(document);
 
                     // Add career information
                     AddCharacterCareer(document, character);
+                    InsertPageBreak(document);
 
                     // Add other sections (example: inventory, background)
                     AddCharacterExtras(document, character);
+                    InsertPageBreak(document);
 
                     // Close the document
                     document.Close();
                 }
             }
+        }
+
+        private static void AddHeader(CaAeCharacter character, Document document, string imagePath)
+        {
+            // Create a table with two columns: left for text, right for the image
+            Table table = new Table(UnitValue.CreatePercentArray(new float[] { 3, 2 }))
+                .UseAllAvailableWidth()
+                .SetMarginBottom(20);
+
+            // Left column: Character details
+            Cell detailsCell = new Cell()
+                .SetBorder(Border.NO_BORDER);
+            detailsCell.Add(new Paragraph(character.Name)                
+                .SetFontSize(24)
+                .SimulateBold()
+                .SetMarginBottom(10));
+            detailsCell.Add(new Paragraph($"Metatype: {character.Metatype}")
+                .SetFontSize(12)
+                .SetMarginBottom(10));
+            detailsCell.Add(new Paragraph($"Archetype: {character.Archetype.Name}")
+                .SetFontSize(12)
+                .SetMarginBottom(10));
+            detailsCell.Add(new Paragraph($"Origin: {character.Origin.Name}")
+                .SetFontSize(12)
+                .SetMarginBottom(10));
+            detailsCell.Add(new Paragraph($"Age: {character.Age}")
+                .SetFontSize(12)
+                .SetMarginBottom(10));
+            table.AddCell(detailsCell);
+
+            // Right column: HealthStatus image
+            if (File.Exists(imagePath))
+            {
+                Image image = new Image(ImageDataFactory.Create(imagePath))
+                    .SetAutoScale(true)
+                    .SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                Cell imageCell = new Cell()
+                    .SetBorder(Border.NO_BORDER)
+                    .Add(image);
+                table.AddCell(imageCell);
+            }
+
+
+            // Add the table to the document
+            document.Add(table);
         }
 
         private static void AddCharacterAttributes(Document document, CaAeCharacter character)
@@ -87,10 +126,12 @@ namespace chargen.Character
 
             // Add the table to the document
             document.Add(table);
+           
         }
 
         private static void AddCharacterSkills(Document document, CaAeCharacter character)
         {
+
             document.Add(new Paragraph("Skills")
          .SetFontSize(16)
          .SimulateBold()
@@ -109,7 +150,7 @@ namespace chargen.Character
 
             // Add rows for skills
             foreach (CharacterSkill skill in character.Skills)
-            {         
+            {
 
                 // Add the skill name
                 table.AddCell(new Cell().Add(new Paragraph(skill.Name)));
@@ -139,12 +180,17 @@ namespace chargen.Character
                 // Add the cells to the table
                 table.AddCell(trainedCell);
                 table.AddCell(advancedCell);
-                table.AddCell(expertCell);                
+                table.AddCell(expertCell);
 
             }
 
             // Add the table to the document
             document.Add(table);
+        }
+
+        private static void InsertPageBreak(Document document)
+        {
+            document.Add(new AreaBreak(AreaBreakType.NEXT_PAGE));
         }
 
         private static void AddCharacterCareer(Document document, CaAeCharacter character)

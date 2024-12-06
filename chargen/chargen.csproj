@@ -35,6 +35,9 @@
     <Resource Include="Views\Logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="HealthStatus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="orbitron\orbitron-black.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
