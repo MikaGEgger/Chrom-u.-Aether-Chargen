@@ -120,7 +120,13 @@ namespace chargen.Character
         public List<CharacterAttribute> Attributess
         {
             get { return attributes; }
-            set { attributes = value; }
+            set {
+                if (attributes != value)
+                {
+                    attributes = value;
+                    OnPropertyChanged(nameof(Attributess));
+                }
+            }
         }
 
         public double Essence { get; set; }
