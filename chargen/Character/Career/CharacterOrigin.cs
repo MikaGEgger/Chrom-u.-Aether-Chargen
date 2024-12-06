@@ -16,7 +16,7 @@ namespace chargen.Character.Career
         [XmlIgnore]
         public List<CharacterAttribute> AttributeMali { get; set; }
 
-
+        [XmlIgnore]
         public int FatePointBonus { get; set; }
 
         [XmlIgnore]

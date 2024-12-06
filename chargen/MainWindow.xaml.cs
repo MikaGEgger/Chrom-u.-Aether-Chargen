@@ -4,9 +4,9 @@ using chargen.RulesetConstants;
 using chargen.Views;
 using System.Windows;
 using System.Windows.Media;
-using WpfApp.Views;
+using CharGen.Views;
 
-namespace WpfApp
+namespace CharGen
 {
     public partial class MainWindow : Window
     {
@@ -34,18 +34,23 @@ namespace WpfApp
             MainContentArea.Content = new PointBuyView(this);
         }
 
-        public void LoadSkillSelectionView(Character_ character)
+        public void LoadSkillSelectionView(CaAeCharacter character)
         {
             MainContentArea.Content = new SkillSelectionView(this, character);
         }
-        public void LoadSkillUpgradeView(Character_ character)
+        public void LoadSkillUpgradeView(CaAeCharacter character)
         {
             MainContentArea.Content = new SkillUpgradeView(this, character);
         }
 
-        internal void LoadCarreerView(Character_ character)
+        internal void LoadCarreerView(CaAeCharacter character)
         {
-            MainContentArea.Content = new WpfApp.Views.CarreerView(this, character);
+            MainContentArea.Content = new CareerView(this, character);
+        }
+
+        internal void LoadPointBuyView(CaAeCharacter character)
+        {
+            MainContentArea.Content = new PointBuyView(this, character);
         }
     }
 }

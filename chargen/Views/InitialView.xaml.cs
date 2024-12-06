@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WpfApp.Views
+namespace CharGen.Views
 {
     public partial class InitialView : UserControl
     {

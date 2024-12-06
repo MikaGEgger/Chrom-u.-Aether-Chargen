@@ -10,12 +10,12 @@ namespace chargen.Character
 {
     public static class CharacterXMLParser
     {
-        public static void ExportCharacter(Character_ character)
+        public static void ExportCharacter(CaAeCharacter character)
         {
  TextWriter writer = null;
     try
     {
-        var serializer = new XmlSerializer(typeof(Character_));
+        var serializer = new XmlSerializer(typeof(CaAeCharacter));
         writer = new StreamWriter(character.Name+".XML",false);
         serializer.Serialize(writer, character);
     }

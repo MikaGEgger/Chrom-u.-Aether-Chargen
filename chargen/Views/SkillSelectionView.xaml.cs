@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using static chargen.Character.CharacterProperties.CharacterSkill;
 
-namespace WpfApp.Views
+namespace CharGen.Views
 {
     public partial class SkillSelectionView : UserControl
     {
@@ -17,7 +17,7 @@ namespace WpfApp.Views
 
         public Archetype SelectedArchetype { get; }
 
-        private Character_ CharacterToBeCreated;
+        private CaAeCharacter CharacterToBeCreated;
         public string TrainedSkill1 { get; set; }
         public string TrainedSkill2 { get; set; }
 
@@ -25,7 +25,7 @@ namespace WpfApp.Views
             new ObservableCollection<string>(
                 SelectedArchetype.Skills.Where(skill => skill != TrainedSkill1));
 
-        public SkillSelectionView(MainWindow mainWindow, Character_ character)
+        public SkillSelectionView(MainWindow mainWindow, CaAeCharacter character)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
@@ -39,7 +39,7 @@ namespace WpfApp.Views
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.LoadSkillUpgradeView(CharacterToBeCreated);
+            _mainWindow.LoadPointBuyView(CharacterToBeCreated);
 
         }
 

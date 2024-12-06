@@ -33,6 +33,23 @@
     <Resource Include="favicon-32x32.png" />
     <Resource Include="Logo.png" />
     <Resource Include="Views\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="HealthStatus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="orbitron\orbitron-black.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="orbitron\orbitron-bold.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="orbitron\orbitron-light.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="orbitron\orbitron-medium.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup> 
 
 </Project>

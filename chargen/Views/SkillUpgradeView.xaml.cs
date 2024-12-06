@@ -8,13 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using static chargen.Character.CharacterProperties.CharacterSkill;
 
-namespace WpfApp.Views
+namespace CharGen.Views
 {
     public partial class SkillUpgradeView : UserControl
     {
         private const int MaxSkillIncreases = 2;
         private int _currentSkillIncreaseCount = 0;
-        private Character_ _characterToBeCreated;
+        private CaAeCharacter _characterToBeCreated;
         private MainWindow _mainWindow;
 
         public List<CharacterSkill> skills { get; set; }
@@ -26,7 +26,7 @@ namespace WpfApp.Views
        
        
 
-        public SkillUpgradeView(MainWindow mainWindow, Character_ characterToBeCreated)
+        public SkillUpgradeView(MainWindow mainWindow, CaAeCharacter characterToBeCreated)
         {
             InitializeComponent();
             skills=SetExistingSkills(characterToBeCreated);
@@ -37,7 +37,7 @@ namespace WpfApp.Views
             DataContext = this;
         }
 
-        private List<CharacterSkill>? SetExistingSkills(Character_ characterToBeCreated)
+        private List<CharacterSkill>? SetExistingSkills(CaAeCharacter characterToBeCreated)
         {
            var existint = new ObservableCollection<CharacterSkill>();
             foreach (var skill in characterToBeCreated.Skills)
@@ -89,16 +89,24 @@ namespace WpfApp.Views
                     }
                 }
             }
-          
 
+            var modifiedSkill = (sender as RadioButton)?.DataContext as CharacterSkill;
             if (_currentSkillIncreaseCount > MaxSkillIncreases)
             {
                 MessageBox.Show("You can only increase 2 skills.");
                 // Revert selection
-                var selectedSkill = (sender as RadioButton)?.DataContext as CharacterSkill;
-                selectedSkill.CurrentLevel = existingSkills.First(s => s.Name == selectedSkill.Name).CurrentLevel;
+
+                modifiedSkill.CurrentLevel = existingSkills.First(s => s.Name == modifiedSkill.Name).CurrentLevel;
 
 
+            }
+            else
+            {
+                SkillIncreaseCount = _currentSkillIncreaseCount;
+                _characterToBeCreated.Skills.FirstOrDefault(x=>x.Name.Equals(modifiedSkill.Name)).CurrentLevel = modifiedSkill.CurrentLevel;
+                OnPropertyChanged(nameof(SkillIncreaseCount));
+                OnPropertyChanged(nameof(CanModifyKnowledgeLevel));
+                OnPropertyChanged(nameof(ShowValidationMessage));
             }
         }
 
