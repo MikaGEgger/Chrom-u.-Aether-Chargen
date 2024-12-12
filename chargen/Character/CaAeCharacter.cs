@@ -2,21 +2,23 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using chargen.Character.Career;
 using chargen.Character.CharacterProperties;
+using static chargen.Character.CharacterProperties.CharacterSkill;
 
 namespace chargen.Character
 {
-    public class CaAeCharacter : INotifyPropertyChanged 
+    public class CaAeCharacter : INotifyPropertyChanged
     {
-        public CaAeCharacter ()
+        public CaAeCharacter()
         {
-            attributes = new List<CharacterAttribute> ();            
+            attributes = new List<CharacterAttribute>();
         }
 
-       
 
-       
+
+
 
         public CaAeCharacter(string characterName, Metatype metatype, CharacterOrigin origin)
         {
@@ -25,16 +27,16 @@ namespace chargen.Character
             Origin = origin;
         }
         #region health
-        
+
         private int _lebenspunkteMax;
         private int erschoepfungspunkteMax;
         private int _movement;
         private int _mana;
 
-        private int totalAttributesSum=0;
-        private Metatype metatype;
+        private int totalAttributesSum = 0;
+        private Metatype metatype = new Metatype();
 
-        private int age=18;
+        private int age = 18;
 
         public int Age
         {
@@ -45,13 +47,14 @@ namespace chargen.Character
 
         public int TotalAttributesSum
         {
-            get { return totalAttributesSum;  }
-            set {
+            get { return totalAttributesSum; }
+            set
+            {
                 if (totalAttributesSum != value)
                 {
                     totalAttributesSum = value;
                     OnPropertyChanged(nameof(TotalAttributesSum));
-                    
+
                 }
             }
         }
@@ -80,7 +83,7 @@ namespace chargen.Character
                 {
                     erschoepfungspunkteMax = value;
                     OnPropertyChanged(nameof(ErschoepfungspunkteMax));
-                                    }
+                }
             }
         }
 
@@ -115,16 +118,25 @@ namespace chargen.Character
         public int ErschoepfungspunkteCurrent { get; set; }
         #endregion
 
-        private List<CharacterAttribute> attributes ;
+        private List<CharacterAttribute> attributes;
 
         public List<CharacterAttribute> Attributess
         {
             get { return attributes; }
-            set { attributes = value; }
+            set
+            {
+                if (attributes != value)
+                {
+                    attributes = value;
+                    OnPropertyChanged(nameof(Attributess));
+                }
+            }
         }
 
         public double Essence { get; set; }
-        public Metatype Metatype { get => metatype; set
+        public Metatype Metatype
+        {
+            get => metatype; set
             {
                 metatype = value;
                 CalculateAttributeValues();
@@ -148,19 +160,22 @@ namespace chargen.Character
         public CharacterOrigin Origin
         {
             get { return origin; }
-            set { origin = value;
+            set
+            {
+                origin = value;
                 CalculateAttributeValues();
                 OnPropertyChanged(nameof(Origin));
             }
         }
 
 
-        private Archetype archetype;
+        private Archetype archetype = new Archetype();
 
         public Archetype Archetype
         {
             get { return archetype; }
-            set {
+            set
+            {
                 archetype = value;
                 OnPropertyChanged(nameof(Archetype));
             }
@@ -169,7 +184,7 @@ namespace chargen.Character
 
         public string Name { get; set; }
 
-      
+
 
         public List<CharacterSkill> Skills { get; set; }
 
@@ -181,7 +196,8 @@ namespace chargen.Character
 
         public override string ToString()
         {
-            return "Name: " + Name + " Metatype: " + Metatype.ToString();
+            var metatype = Metatype == null ? "None" : Metatype.Name;
+            return "Name: " + Name + " Metatype: " + metatype;
         }
 
         public void CreateComputedElements()
@@ -189,7 +205,7 @@ namespace chargen.Character
             LebenspunkteMax = CalculateLebensPunkte();
             LebenpunkteCurrent = LebenspunkteMax;
             ErschoepfungspunkteMax = CalculateErschöpfungspunkte();
-            ErschoepfungspunkteCurrent =  ErschoepfungspunkteMax;
+            ErschoepfungspunkteCurrent = ErschoepfungspunkteMax;
             Movement = CalculateMovement();
             Essence = CalculateEssence();
             Mana = CalculateMana();
@@ -206,20 +222,20 @@ namespace chargen.Character
 
         private double CalculateEssence()
         {
-             return 100;
+            return 100;
             //Not implemented
         }
 
         private int CalculateMovement()
         {
-            int str=Attributess.FirstOrDefault(x=>x.AttributeCode=="STR").Value;
-            int ges= Attributess.FirstOrDefault(x=>x.AttributeCode=="GES").Value;
-            int wid= Attributess.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
-            if(wid>str&&wid>ges)
+            int str = Attributess.FirstOrDefault(x => x.AttributeCode == "STR").Value;
+            int ges = Attributess.FirstOrDefault(x => x.AttributeCode == "GES").Value;
+            int wid = Attributess.FirstOrDefault(x => x.AttributeCode == "WID").Value;
+            if (wid > str && wid > ges)
             {
                 return 7;
             }
-            else if(wid<str&&wid<ges)
+            else if (wid < str && wid < ges)
             {
                 return 9;
             }
@@ -229,17 +245,46 @@ namespace chargen.Character
         private int CalculateErschöpfungspunkte()
         {
             //(WIK+WID)/5
-            int wik= Attributess.FirstOrDefault(x=>x.AttributeCode=="WIK").Value;            
-            int wid= Attributess.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
-            return (wik+wid)/5;
+            int wik = Attributess.FirstOrDefault(x => x.AttributeCode == "WIK").Value;
+            int wid = Attributess.FirstOrDefault(x => x.AttributeCode == "WID").Value;
+            return (wik + wid) / 5;
         }
 
         private int CalculateLebensPunkte()
         {
             //(STR+WID)/5
-            int str= Attributess.FirstOrDefault(x=>x.AttributeCode=="STR").Value;            
-            int wid= Attributess.FirstOrDefault(x=>x.AttributeCode=="WID").Value;
-            return (str+wid)/5;
+            int str = Attributess.FirstOrDefault(x => x.AttributeCode == "STR").Value;
+            int wid = Attributess.FirstOrDefault(x => x.AttributeCode == "WID").Value;
+            return (str + wid) / 5;
+        }
+
+        public string GetSummary()
+        {
+            var summary = new StringBuilder();
+
+            // Add Name, Metatype, Archetype, Age
+            summary.AppendLine($"Name: {Name}");
+            summary.AppendLine($"Metatype: {Metatype.Name}");
+            summary.AppendLine($"Archetype: {Archetype.Name}");
+            summary.AppendLine($"Age: {Age}");
+
+            // Add Trained and Advanced Skills
+            var trainedSkills = Skills.Where(skill => skill.CurrentLevel == KnowledgeLevel.Trained)
+                                      .Select(skill => skill.Name);
+            var advancedSkills = Skills.Where(skill => skill.CurrentLevel == KnowledgeLevel.Advanced)
+                                       .Select(skill => skill.Name);
+
+            if (trainedSkills.Any())
+            {
+                summary.AppendLine($"Trained Skills: {string.Join(", ", trainedSkills)}");
+            }
+
+            if (advancedSkills.Any())
+            {
+                summary.AppendLine($"Advanced Skills: {string.Join(", ", advancedSkills)}");
+            }
+
+            return summary.ToString();
         }
     }
 }

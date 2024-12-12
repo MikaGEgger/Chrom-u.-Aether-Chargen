@@ -5,18 +5,41 @@ using chargen.Views;
 using System.Windows;
 using System.Windows.Media;
 using CharGen.Views;
+using System.ComponentModel;
+using chargen.Character.CharacterProperties;
 
 namespace CharGen
 {
-    public partial class MainWindow : Window
-    {
+    public partial class MainWindow : Window, INotifyPropertyChanged
+{
+            private CaAeCharacter _character;
+
+        public CaAeCharacter Character
+        {
+            get => _character;
+            set
+            {
+                _character = value;
+                OnPropertyChanged(nameof(Character));
+                OnPropertyChanged(nameof(Character.Name));
+                OnPropertyChanged(nameof(CharacterSummary));
+            }
+        }
+
+        public string CharacterSummary => Character?.GetSummary();
+
         public MainWindow()
         {
             this.FontFamily = new FontFamily("Orbitron");
             RulesetConstants rulesetConstants = new RulesetConstants();
-          
+            Character = new CaAeCharacter();
+
+            Character.Attributess = new List<CharacterAttribute>(rulesetConstants.CharacterAttributes);
+            Character.Skills = new List<CharacterSkill>(rulesetConstants.CharacterSkills);
+
             InitializeComponent();
-            LoadInitialView();
+            LoadPointBuyView();
+            DataContext = this;
         }
 
         public void LoadInitialView()
@@ -31,26 +54,37 @@ namespace CharGen
 
         public void LoadPointBuyView()
         {
-            MainContentArea.Content = new PointBuyView(this);
+            MainContentArea.Content = new PointBuyView(this, _character);
         }
 
         public void LoadSkillSelectionView(CaAeCharacter character)
         {
+            this.Character = character;
             MainContentArea.Content = new SkillSelectionView(this, character);
         }
         public void LoadSkillUpgradeView(CaAeCharacter character)
         {
+            this.Character = character;
             MainContentArea.Content = new SkillUpgradeView(this, character);
         }
 
         internal void LoadCarreerView(CaAeCharacter character)
         {
+            this.Character = character;
             MainContentArea.Content = new CareerView(this, character);
         }
 
         internal void LoadPointBuyView(CaAeCharacter character)
         {
+            this.Character = character;
             MainContentArea.Content = new PointBuyView(this, character);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
