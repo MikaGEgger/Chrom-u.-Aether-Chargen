@@ -22,8 +22,11 @@ namespace CharGen
                 _character = value;
                 OnPropertyChanged(nameof(Character));
                 OnPropertyChanged(nameof(Character.Name));
+                OnPropertyChanged(nameof(CharacterSummary));
             }
         }
+
+        public string CharacterSummary => Character?.GetSummary();
 
         public MainWindow()
         {

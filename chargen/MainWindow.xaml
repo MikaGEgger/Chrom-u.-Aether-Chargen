@@ -24,48 +24,7 @@
                                HorizontalAlignment="Center"/>
 
 					<!-- Display character name -->
-					<TextBlock Text="Name:" FontWeight="Bold" FontSize="14" Margin="0,10,0,0"/>
-					<TextBlock Text="{Binding Character.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
-					<TextBlock Text="{Binding Character, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
-
-					<!-- Display character metatype -->
-					<TextBlock Text="Metatype:" FontWeight="Bold" FontSize="14" Margin="0,10,0,0"/>
-					<TextBlock Text="{Binding Character.Metatype, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
-
-					<!-- Display character archetype -->
-					<TextBlock Text="Archetype:" FontWeight="Bold" FontSize="14" Margin="0,10,0,0"/>
-					<TextBlock Text="{Binding Character.Archetype, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
-
-					<!-- Display attributes -->
-					<TextBlock Text="Attributes:" FontWeight="Bold" FontSize="14" Margin="0,10,0,0"/>
-					<ItemsControl ItemsSource="{Binding Character.Attributes, UpdateSourceTrigger=PropertyChanged}">
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-									<TextBlock Text="{Binding AttributeName}" Width="150"/>
-									<TextBlock Text="{Binding Value}" HorizontalAlignment="Right"/>
-								</StackPanel>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
-
-					<!-- Display skills -->
-					<TextBlock Text="Skills:" FontWeight="Bold" FontSize="14" Margin="0,10,0,0"/>
-					<ItemsControl ItemsSource="{Binding Character.Skills, UpdateSourceTrigger=PropertyChanged}">
-						<ItemsControl.ItemTemplate>
-							<DataTemplate>
-								<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-									<TextBlock Text="{Binding Name}" Width="150"/>
-									<TextBlock Text="{Binding Level}" HorizontalAlignment="Right"/>
-								</StackPanel>
-							</DataTemplate>
-						</ItemsControl.ItemTemplate>
-					</ItemsControl>
-
-					<!-- Display other information -->
-					<TextBlock Text="Additional Information:" FontWeight="Bold" FontSize="14" Margin="0,10,0,0"/>
-					<TextBlock Text="{Binding Character.Background, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="0,5,0,0"/>
-				</StackPanel>
+					<TextBlock Text="{Binding CharacterSummary}" TextWrapping="Wrap" Margin="10"/></StackPanel>
 			</ScrollViewer>
 		</Border>
 
