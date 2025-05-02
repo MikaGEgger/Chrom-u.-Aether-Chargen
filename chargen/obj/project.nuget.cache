@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "G0o52synp+w=",
+  "dgSpecHash": "uLDMQ/MVdPE=",
   "success": true,
   "projectFilePath": "C:\\Users\\mikag\\Documents\\ChromuAetherChargen\\Chrom-u.-Aether-Chargen\\chargen\\chargen.csproj",
   "expectedPackageFiles": [
@@ -147,56 +147,6 @@
     "C:\\Users\\mikag\\.nuget\\packages\\system.xml.xpath.xdocument\\4.0.1\\system.xml.xpath.xdocument.4.0.1.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.NETCore.App' 1.0.5 has a known high severity vulnerability, https://github.com/advisories/GHSA-7mfr-774f-w5r9",
-      "libraryId": "Microsoft.NETCore.App",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.NETCore.App' 1.0.5 has a known high severity vulnerability, https://github.com/advisories/GHSA-8884-xcr4-r68p",
-      "libraryId": "Microsoft.NETCore.App",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.NETCore.Jit' 1.0.7 has a known high severity vulnerability, https://github.com/advisories/GHSA-xcvr-qv8h-m7xw",
-      "libraryId": "Microsoft.NETCore.Jit",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Net.Http' 4.1.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-7jgj-8wvc-jh57",
-      "libraryId": "System.Net.Http",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Security.Cryptography.X509Certificates' 4.1.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-7mfr-774f-w5r9",
-      "libraryId": "System.Security.Cryptography.X509Certificates",
-      "targetGraphs": [
-        "net8.0-windows7.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",
